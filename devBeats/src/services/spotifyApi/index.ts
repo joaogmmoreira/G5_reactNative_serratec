@@ -30,15 +30,19 @@ export const createSpotifySession = async () => {
 };
 
 export const setToken = (token: string | null) => {
-  api.defaults.headers.common.Authorization = `${token}`;
-};
-
-export const getPlaylists = async () => {
-  try {
-    const response = await api.get("/browse/featured-playlists");
-
-    return response.data;
-  } catch (error) {
-    console.log(error);
+  if (token) {
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  } else {
+    delete axios.defaults.headers.common.Authorization;
   }
 };
+
+// export const getPlaylists = async () => {
+//   try {
+//     const response = await api.get("/browse/featured-playlists");
+
+//     return response.data;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };

@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
-import { createSpotifySession } from "../../services/spotifyApi/api";
+import { createSpotifySession } from "../../services/spotifyApi";
 
 export const Home = () => {
-  const handleLogin = async () => {
-    const response = await createSpotifySession();
-    console.log(response);
-  };
+  // const handleLogin = async () => {
+  //   const response = await createSpotifySession();
+  //   console.log(response);
+  // };
 
-  useEffect(() => {
-    handleLogin();
-  }, []);
+  // useEffect(() => {
+  //   handleLogin();
+  // }, []);
 
   return (
     <div>

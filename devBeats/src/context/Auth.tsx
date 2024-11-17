@@ -4,7 +4,12 @@ import {
   IAuth,
   AuthProviderProps,
 } from "../@types/AuthContextType";
-import { setToken } from "../services/spotifyApi/api";
+import { setToken } from "../services/spotifyApi";
+import { useNavigation } from "@react-navigation/native";
+import { TabNavigation } from "../routes/BottomTabNavigator";
+import { createSession } from "../services/backendApi";
+import { createSpotifySession } from "../services/spotifyApi";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 
@@ -13,66 +18,98 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   const [loading, setLoading] = useState<boolean>(true);
   const [authenticated, setAuthenticated] = useState<boolean>(false);
 
+  const navigate = useNavigation<TabNavigation>();
+
   interface ResponseData {
-    message: {
-      email: string;
-      token: string;
-    };
+    data: [
+      {
+        email: string;
+        token: string;
+      }
+    ];
   }
 
-  const handleUserState = (response: { data: ResponseData }): void => {
-    const loggedUser = response.data.message.email;
-    const { token } = response.data.message;
+  const handleUserState = async (
+    response: ResponseData,
+    token: string
+  ): Promise<void> => {
+    const loggedUser = response.data[0].email;
 
-    localStorage.setItem("user", JSON.stringify(loggedUser));
-    localStorage.setItem("token", token);
+    try {
+      await AsyncStorage.setItem("user", JSON.stringify(loggedUser));
+      await AsyncStorage.setItem("token", token);
+    } catch (error) {
+      console.log(error);
+    }
 
     setToken(token);
 
     setUser(loggedUser);
 
     setAuthenticated(true);
-
-    // navigate("/user");
   };
 
-  //   interface LoginForm {
-  //     email: string;
-  //     password: string;
-  //   }
+  interface LoginForm {
+    email: string;
+    password: string;
+  }
 
-  //   const login = async (form: LoginForm): Promise<void> => {
-  //     const response = await createSession(form);
+  const login = async (form: LoginForm): Promise<void> => {
+    const spotifyToken = await createSpotifySession();
 
-  //     handleState(response);
-  //   };
+    if (!spotifyToken) {
+      return;
+    }
 
-  const logout = (): void => {
+    const response = await createSession(form);
+
+    if (response.status !== 200) {
+      return console.log("Credenciais inválidas");
+    }
+
+    handleUserState(response, spotifyToken);
+  };
+
+  const logout = async (): Promise<void> => {
     setToken(null);
     setUser(null);
     setAuthenticated(false);
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
-    // navigate("/");
+    await AsyncStorage.removeItem("user");
+    await AsyncStorage.removeItem("token");
+    navigate.navigate("Login");
   };
 
   useEffect(() => {
-    const recoveredUser = localStorage.getItem("user");
+    const checkStoredToken = async () => {
+      const storedUser = await AsyncStorage.getItem("user");
+      const storedToken = await AsyncStorage.getItem("token");
+      if (storedToken && storedUser) {
+        setUser(storedToken);
 
-    if (recoveredUser) {
-      setUser(JSON.parse(recoveredUser));
-      setAuthenticated(true);
-    }
-
-    setLoading(false);
+        setAuthenticated(true);
+      }
+      setLoading(false);
+    };
+    checkStoredToken();
   }, []);
+
+  // useEffect(() => {
+  //   const recoveredUser = localStorage.getItem("user");
+
+  //   if (recoveredUser) {
+  //     setUser(JSON.parse(recoveredUser));
+  //     setAuthenticated(true);
+  //   }
+
+  //   setLoading(false);
+  // }, []);
 
   const value = useMemo<IAuth>(
     () => ({
       authenticated,
       user,
       loading,
-      // login,
+      login,
       logout,
     }),
     [authenticated, user, loading, logout]
