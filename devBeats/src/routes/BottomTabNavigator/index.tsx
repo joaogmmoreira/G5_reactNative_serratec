@@ -18,10 +18,10 @@ export type RootTabParamList = {
 };
 
 export function BottomTabRoutes() {
-  const authContext = useContext(AuthContext);
-  const authenticated = authContext ? authContext.authenticated : false;
+  // const authContext = useContext(AuthContext);
+  // const authenticated = authContext ? authContext.authenticated : false;
 
-  return authenticated ? (
+  return (
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={{
@@ -41,26 +41,5 @@ export function BottomTabRoutes() {
         component={Home}
       />
     </Tab.Navigator>
-  ) : (
-    <Tab.Navigator
-      // initialRouteName="Home"
-      screenOptions={{
-        headerShown: false,
-        tabBarStyle: { backgroundColor: "#000", paddingBottom: 2 },
-        tabBarInactiveTintColor: "#aaa",
-        tabBarActiveTintColor: "#fff",
-      }}
-    >
-      <Tab.Screen
-        options={{
-          tabBarIcon: ({ color }) => (
-            <Icon name="home" color={color} size={24} />
-          ),
-        }}
-        name="Login"
-        component={Login}
-      />
-    </Tab.Navigator>
-    // login precisa estar dentro de tab.navigator??
   );
 }
