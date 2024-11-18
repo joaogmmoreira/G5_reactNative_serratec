@@ -86,23 +86,14 @@ export default function AuthProvider({ children }: AuthProviderProps) {
       if (storedToken && storedUser) {
         setUser(storedToken);
 
+        setToken(storedToken);
+
         setAuthenticated(true);
       }
       setLoading(false);
     };
     checkStoredToken();
   }, []);
-
-  // useEffect(() => {
-  //   const recoveredUser = localStorage.getItem("user");
-
-  //   if (recoveredUser) {
-  //     setUser(JSON.parse(recoveredUser));
-  //     setAuthenticated(true);
-  //   }
-
-  //   setLoading(false);
-  // }, []);
 
   const value = useMemo<IAuth>(
     () => ({

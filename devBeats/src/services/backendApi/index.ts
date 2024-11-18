@@ -10,6 +10,7 @@ type Form = {
   email: string;
   password: string;
 };
+
 export const createSession = async (form: Form) => {
   const { email, password } = form;
 

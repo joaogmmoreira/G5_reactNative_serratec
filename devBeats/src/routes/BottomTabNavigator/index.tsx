@@ -3,8 +3,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationProp } from "@react-navigation/native";
 import { Home } from "../../screens/Home";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { AuthContext } from "../../context/Auth";
-import { Login } from "../../screens/Login";
+// import { AuthContext } from "../../context/Auth";
+// import { Login } from "../../screens/Login";
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
 

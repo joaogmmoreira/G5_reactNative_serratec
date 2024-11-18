@@ -1,19 +1,41 @@
-import React, { useEffect } from "react";
-import { createSpotifySession } from "../../services/spotifyApi";
+import React, { useEffect, useState } from "react";
+import { getCategories } from "../../services/spotifyApi";
+import { View, FlatList } from "react-native";
+import { CategoriesCard } from "../../components/CategoriesCard";
+import { styles } from "./styles";
+
+export interface CategoriesCardProps {
+  href: string;
+  icons: [
+    {
+      height: number;
+      url: string;
+      width: number;
+    }
+  ];
+  id: string;
+  name: string;
+}
 
 export const Home = () => {
-  // const handleLogin = async () => {
-  //   const response = await createSpotifySession();
-  //   console.log(response);
-  // };
+  const [categories, setCategories] = useState<CategoriesCardProps[]>([]);
 
-  // useEffect(() => {
-  //   handleLogin();
-  // }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getCategories();
+      setCategories(data.categories.items);
+    };
+    fetchData();
+  }, []);
 
   return (
-    <div>
-      <h1>Home</h1>
-    </div>
+    <View style={styles.container}>
+      <FlatList
+        style={styles.categoriesList}
+        data={categories}
+        renderItem={({ item }) => <CategoriesCard {...item} />}
+        keyExtractor={(item) => item.id}
+      />
+    </View>
   );
 };
