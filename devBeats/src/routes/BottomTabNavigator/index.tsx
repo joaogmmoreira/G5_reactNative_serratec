@@ -5,10 +5,6 @@ import { Home } from "../../screens/Home";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Buscar } from "../../screens/Buscar/Buscar";
 
-// import { AuthContext } from "../../context/Auth";
-// import { Login } from "../../screens/Login";
-
-
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
 export type ScreenNames = ["Home", "Auth", "Login"];
@@ -21,9 +17,6 @@ export type RootTabParamList = {
 };
 
 export function BottomTabRoutes() {
-  // const authContext = useContext(AuthContext);
-  // const authenticated = authContext ? authContext.authenticated : false;
-
   return (
     <Tab.Navigator
       initialRouteName="Home"

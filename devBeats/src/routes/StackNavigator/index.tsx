@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { BottomTabRoutes } from "../BottomTabNavigator";
 import { AuthContext } from "../../context/Auth";
 import { Login } from "../../screens/Login";
+import { Artist } from "../../screens/Artist";
 
 const Stack = createNativeStackNavigator();
 
@@ -12,11 +13,18 @@ export function StackNavigator() {
   return (
     <Stack.Navigator>
       {authenticated ? (
-        <Stack.Screen
-          name="Home"
-          component={BottomTabRoutes}
-          options={{ headerShown: false }}
-        />
+        <>
+          <Stack.Screen
+            name="Home"
+            component={BottomTabRoutes}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Artista"
+            component={Artist}
+            options={{ headerShown: false }}
+          />
+        </>
       ) : (
         <Stack.Screen
           name="Login"

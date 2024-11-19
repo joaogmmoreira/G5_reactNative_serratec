@@ -50,3 +50,49 @@ export const getCategories = async () => {
     console.log(error);
   }
 };
+
+export const fetchFeaturedPlaylists = async () => {
+  try {
+    const response = await api.get("/browse/featured-playlists");
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const fetchSearchResults = async (term: string) => {
+  try {
+    const response = await api.get("/search", {
+      params: {
+        q: term,
+        type: "track,album,artist,playlist",
+        limit: 10,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const fetchTopTracks = async (artistId: string) => {
+  try {
+    const response = await api.get(`/artists/${artistId}/top-tracks`, {
+      params: { market: "US" },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar músicas mais populares:", error);
+  }
+};
+
+export const fetchAlbums = async (artistId: string) => {
+  try {
+    const response = await api.get(`/artists/${artistId}/albums`, {
+      params: { include_groups: "album,single", limit: 10 },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar álbuns:", error);
+  }
+};
