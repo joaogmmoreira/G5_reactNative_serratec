@@ -9,11 +9,13 @@ export const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     paddingLeft: 10,
+    color: "#fff",
   },
   secondaryTitle: {
     fontSize: 18,
     fontWeight: "bold",
     paddingLeft: 10,
+    color: "#fff",
   },
   titleContainer: {
     flexDirection: "row",

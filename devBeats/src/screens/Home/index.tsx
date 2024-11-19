@@ -5,6 +5,7 @@ import { View, FlatList, Text, Image } from "react-native";
 import { CategoriesCard } from "../../components/CategoriesCard";
 import { styles } from "./styles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Gradient } from "../../components/Gradient/Gradient";
 
 export interface CategoriesCardProps {
   href: string;
@@ -45,7 +46,7 @@ export const Home = () => {
   }, []);
 
   return (
-    <View>
+    <Gradient>
       <View style={styles.mainContainer}>
         <View style={styles.titleContainer}>
           <Image source={{ uri: userData?.foto }} style={styles.image} />
@@ -59,9 +60,10 @@ export const Home = () => {
             data={categories}
             renderItem={({ item }) => <CategoriesCard {...item} />}
             keyExtractor={(item) => item.id}
+            numColumns={2}
           />
         </View>
       </View>
-    </View>
+    </Gradient>
   );
 };

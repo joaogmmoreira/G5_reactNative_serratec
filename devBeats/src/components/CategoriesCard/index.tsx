@@ -5,8 +5,8 @@ import { styles } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 
 export const CategoriesCard = (category: CategoriesCardProps) => {
-  const { id, icons, name } = category;
   const navigate = useNavigation<any>();
+  const { id, icons, name } = category;
 
   const handlePress = () => {
     return navigate.navigate("playlist", { id });

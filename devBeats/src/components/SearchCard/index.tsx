@@ -22,8 +22,9 @@ interface PlaylistCardProps {
   item: Playlist | SearchItems;
 }
 
-export const PlaylistCard: React.FC<PlaylistCardProps> = ({ item }) => {
+export const SearchCard: React.FC<PlaylistCardProps> = ({ item }) => {
   const navigate = useNavigation<any>();
+
   const handlePress = (type: string) => {
     if (type === "playlist") {
       return navigate.navigate("Playlist", item.id);

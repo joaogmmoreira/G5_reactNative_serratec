@@ -1,11 +1,28 @@
 import React, { useState, useContext, useEffect } from "react";
-import { View, TextInput, Button } from "react-native";
+import { View, TextInput, Button, Image, Text, StyleSheet } from "react-native";
 import { AuthContext } from "../../context/Auth";
 import { styles } from "./styles";
+import {
+  useFonts,
+  Silkscreen_700Bold,
+  Silkscreen_400Regular,
+} from "@expo-google-fonts/silkscreen";
+import {
+  Poppins_600SemiBold_Italic,
+  Poppins_100Thin,
+} from "@expo-google-fonts/poppins";
+import { Gradient } from "../../components/Gradient/Gradient";
 
 export const Login = () => {
   const [form, setForm] = useState({ email: "", password: "" });
   const [buttonDisabled, setButtonDisabled] = useState(true);
+
+  const [fontLoaded] = useFonts({
+    Silkscreen_700Bold,
+    Silkscreen_400Regular,
+    Poppins_600SemiBold_Italic,
+    Poppins_100Thin,
+  });
 
   useEffect(() => {
     formValidation();
@@ -13,8 +30,6 @@ export const Login = () => {
 
   const authContext = useContext(AuthContext);
   const login = authContext ? authContext.login : () => {};
-  // const authenticated = authContext ? authContext.authenticated : false;
-  // const logout = authContext ? authContext.logout : () => {};
 
   const formValidation = () => {
     const isEmailValid = /\S+@\S+\.\S+/.test(form.email);
@@ -35,36 +50,53 @@ export const Login = () => {
   };
 
   return (
-    <View style={styles.mainContainer}>
-      <TextInput
-        style={styles.textInput}
-        onChangeText={(value) => {
-          onChangeForm("email", value);
-        }}
-        value={form.email}
-        placeholder="email"
-        key="email"
-      />
-      <TextInput
-        style={styles.textInput}
-        onChangeText={(value) => {
-          onChangeForm("password", value);
-        }}
-        value={form.password}
-        secureTextEntry={true}
-        placeholder="password"
-        keyboardType="numeric"
-        key="password"
-      />
-      <View style={styles.button}>
-        <Button
-          onPress={() => onButtonClick()}
-          title="Login"
-          accessibilityLabel="Login"
-          disabled={buttonDisabled}
+    <Gradient>
+      <View style={styles.container}>
+        <Image
+          source={{ uri: "https://i.ibb.co/ZXD1791/logo-devbeats.png" }}
+          style={styles.logo}
         />
+        <View>
+          <Text style={styles.appName}>DevBeats</Text>
+          <View style={styles.linesContainer2}>
+            <View style={styles.line2}></View>
+            <View style={styles.line2}></View>
+          </View>
+          <Text style={styles.appDescription}>Code Your Rhythm</Text>
+        </View>
+        <View style={styles.inputContainer}>
+          <Text style={styles.login}>LOG IN</Text>
+          <TextInput
+            onChangeText={(value) => {
+              onChangeForm("email", value);
+            }}
+            value={form.email}
+            placeholder="email"
+            key="email"
+            style={styles.input}
+          />
+          <TextInput
+            onChangeText={(value) => {
+              onChangeForm("password", value);
+            }}
+            value={form.password}
+            secureTextEntry={true}
+            placeholder="password"
+            keyboardType="numeric"
+            key="password"
+            style={styles.input}
+          />
+          <View style={styles.buttonContainer}>
+            <Button
+              onPress={() => onButtonClick()}
+              title="Login"
+              accessibilityLabel="Login"
+              disabled={buttonDisabled}
+              color="#4EAEA4"
+            />
+          </View>
+        </View>
       </View>
-      {/* <Text>Login</Text> */}
-    </View>
+    </Gradient>
   );
 };

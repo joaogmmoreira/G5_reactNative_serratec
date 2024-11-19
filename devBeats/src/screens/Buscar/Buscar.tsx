@@ -6,7 +6,7 @@ import {
   fetchFeaturedPlaylists,
   fetchSearchResults,
 } from "../../services/spotifyApi";
-import { PlaylistCard } from "../../components/SearchCard";
+import { SearchCard } from "../../components/SearchCard";
 
 interface Playlist {
   id: string;
@@ -74,7 +74,7 @@ export function Buscar() {
       {searchTerm ? (
         <FlatList
           data={searchResults}
-          renderItem={({ item }) => <PlaylistCard item={item} />}
+          renderItem={({ item }) => <SearchCard item={item} />}
           keyExtractor={(item) => item.id}
           numColumns={2}
           contentContainerStyle={buscarCss.flatListContainer}
@@ -82,7 +82,7 @@ export function Buscar() {
       ) : (
         <FlatList
           data={playlists}
-          renderItem={({ item }) => <PlaylistCard item={item} />}
+          renderItem={({ item }) => <SearchCard item={item} />}
           keyExtractor={(item) => item.id}
           numColumns={2}
           contentContainerStyle={buscarCss.flatListContainer}

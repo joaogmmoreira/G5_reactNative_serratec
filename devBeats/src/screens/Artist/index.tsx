@@ -3,6 +3,8 @@ import { View, Text, FlatList, Image, StyleSheet } from "react-native";
 import { fetchTopTracks, fetchAlbums } from "../../services/spotifyApi";
 import { styles } from "./styles";
 import { useNavigation } from "@react-navigation/native";
+import { SearchCard } from "../../components/SearchCard";
+import { TrackCard } from "../../components/TrackCard";
 
 interface Album {
   id: string;
@@ -16,26 +18,29 @@ interface Track {
 }
 
 interface ArtistDetailProps {
-  route: {
+  route?: {
     params: string;
   };
 }
 
 export function Artist({ route }: ArtistDetailProps) {
-  const { params } = route;
-  const navigate = useNavigation<any>();
   const [topTracks, setTopTracks] = useState<Track[]>([]);
   const [albums, setAlbums] = useState<Album[]>([]);
 
+  const navigate = useNavigation<any>();
+  const params = route?.params;
+
   useEffect(() => {
     const handleTopTracks = async () => {
-      if (!params) navigate.navigate("Home");
+      if (!params) return navigate.navigate("Home");
+
       const response = await fetchTopTracks(params);
+
       setTopTracks(response.tracks);
     };
 
     const handleAlbums = async () => {
-      if (!params) navigate.navigate("Home");
+      if (!params) return navigate.navigate("Home");
       const response = await fetchAlbums(params);
       setAlbums(response.items);
     };
@@ -48,19 +53,13 @@ export function Artist({ route }: ArtistDetailProps) {
       <Text style={styles.title}>Músicas mais populares</Text>
       <FlatList
         data={topTracks}
-        renderItem={({ item }) => <Text style={styles.track}>{item.name}</Text>}
+        renderItem={({ item }) => <TrackCard item={item} />}
         keyExtractor={(item) => item.id}
       />
-
       <Text style={styles.title}>Álbuns</Text>
       <FlatList
         data={albums}
-        renderItem={({ item }) => (
-          <View style={styles.album}>
-            <Image source={{ uri: item.images[0]?.url }} style={styles.image} />
-            <Text>{item.name}</Text>
-          </View>
-        )}
+        renderItem={({ item }) => <SearchCard item={item} />}
         keyExtractor={(item) => item.id}
         horizontal
       />

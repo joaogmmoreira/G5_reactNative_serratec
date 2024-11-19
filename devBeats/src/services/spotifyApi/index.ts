@@ -86,7 +86,7 @@ export const fetchTopTracks = async (artistId: string) => {
   }
 };
 
-export const fetchAlbums = async (artistId: string) => {
+export const fetchAlbums = async (artistId: string | undefined) => {
   try {
     const response = await api.get(`/artists/${artistId}/albums`, {
       params: { include_groups: "album,single", limit: 10 },
