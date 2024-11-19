@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { View, TextInput, Button } from "react-native";
 import { AuthContext } from "../../context/Auth";
+import { styles } from "./styles";
 
 export const Login = () => {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -34,8 +35,9 @@ export const Login = () => {
   };
 
   return (
-    <View>
+    <View style={styles.mainContainer}>
       <TextInput
+        style={styles.textInput}
         onChangeText={(value) => {
           onChangeForm("email", value);
         }}
@@ -44,6 +46,7 @@ export const Login = () => {
         key="email"
       />
       <TextInput
+        style={styles.textInput}
         onChangeText={(value) => {
           onChangeForm("password", value);
         }}
@@ -53,12 +56,14 @@ export const Login = () => {
         keyboardType="numeric"
         key="password"
       />
-      <Button
-        onPress={() => onButtonClick()}
-        title="Login"
-        accessibilityLabel="Login"
-        disabled={buttonDisabled}
-      />
+      <View style={styles.button}>
+        <Button
+          onPress={() => onButtonClick()}
+          title="Login"
+          accessibilityLabel="Login"
+          disabled={buttonDisabled}
+        />
+      </View>
       {/* <Text>Login</Text> */}
     </View>
   );

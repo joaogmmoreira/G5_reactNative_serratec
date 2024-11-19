@@ -15,6 +15,13 @@ export const createSession = async (form: Form) => {
   const { email, password } = form;
 
   const response = await api.get(`/users?email=${email}&senha=${password}`);
+  console.log(response);
+
+  return response;
+};
+
+export const getUserName = async (email: string) => {
+  const response = await api.get(`/users?email=${email.replace(/"/g, "")}`);
 
   return response;
 };

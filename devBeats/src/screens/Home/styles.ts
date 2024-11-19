@@ -1,20 +1,32 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+    marginTop: 50,
+  },
+  mainTitle: {
+    fontSize: 24,
+    fontWeight: "bold",
+    paddingLeft: 10,
+  },
+  secondaryTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    paddingLeft: 10,
+  },
+  titleContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 20,
+  },
+  image: {
+    width: 30,
+    height: 30,
+    borderRadius: 50,
+    marginLeft: 10,
+  },
   container: {
     flex: 1,
-    // backgroundColor: "#03A9F4",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    // width: "100%",
-    // borderRadius: 10,
-    // padding: 20,
-    // margin: 10,
-  },
-  categoriesList: {
-    flex: 1,
-    // flexDirection: "row",
-    width: "100%",
   },
 });
