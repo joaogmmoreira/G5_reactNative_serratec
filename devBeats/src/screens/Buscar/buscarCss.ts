@@ -2,35 +2,41 @@ import { StyleSheet } from "react-native";
 
 export const buscarCss = StyleSheet.create({
 
-    bodySearch:{
-        flex: 1,
-    },
-    input: {
-        height: 40,
-        borderColor: 'gray',
-        borderWidth: 1,
-        marginBottom: 20,
-        paddingLeft: 10,
-        borderRadius: 5,
-      },
-      container: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'space-between',
-      },
-      item: {
-        width: '48%', // Tamanho dos itens no FlatList
-        marginBottom: 20,
-        alignItems: 'center',
-      },
-      image: {
-        width: 100,
-        height: 100,
-        borderRadius: 10,
-      },
-      text: {
-        textAlign: 'center',
-        marginTop: 10,
-        fontWeight: 'bold',
-      },
+
+  container: {
+    height: '100%',
+    width: '100%',
+    flex: 1,
+    padding: 10,
+  },
+  input: {
+    backgroundColor: 'white',
+    height: 40,
+    borderColor: "gray",
+    borderWidth: 1,
+    marginBottom: 20,
+    paddingHorizontal: 10,
+    borderRadius: 5,
+  },
+  flatListContainer: {
+    justifyContent: "space-between",
+  },
+  item: {
+    flex: 1,
+    margin: 5,
+    alignItems: "center",
+    backgroundColor: "#f9f9f9",
+    borderRadius: 10,
+    padding: 10,
+  },
+  image: {
+    width: 120,
+    height: 120,
+    borderRadius: 10,
+    marginBottom: 10,
+  },
+  text: {
+    textAlign: "center",
+    fontWeight: "bold",
+  },
 })
