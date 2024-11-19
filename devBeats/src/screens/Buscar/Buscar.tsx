@@ -58,8 +58,6 @@ export function Buscar() {
     if (searchTerm) {
       handleSearchResults(searchTerm);
     }
-    console.log(searchResults);
-    console.log(playlists);
   }, [searchTerm]);
 
   return (
