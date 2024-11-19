@@ -3,8 +3,11 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationProp } from "@react-navigation/native";
 import { Home } from "../../screens/Home";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { Buscar } from "../../screens/Buscar/Buscar";
+
 // import { AuthContext } from "../../context/Auth";
 // import { Login } from "../../screens/Login";
+
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
@@ -39,6 +42,15 @@ export function BottomTabRoutes() {
         }}
         name="Home"
         component={Home}
+      />
+      <Tab.Screen
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Icon name="search" color={color} size={24} />
+          ),
+        }}
+        name="Search" // Nome para a rota da aba
+        component={Buscar} // Associando à tela Buscar
       />
     </Tab.Navigator>
   );

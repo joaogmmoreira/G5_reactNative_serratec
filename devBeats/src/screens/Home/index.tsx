@@ -1,3 +1,6 @@
+
+import React from "react";
+import { View, Text } from "react-native";
 import React, { useEffect, useState } from "react";
 import { getCategories } from "../../services/spotifyApi";
 import { getUserName } from "../../services/backendApi";
@@ -24,6 +27,7 @@ interface UserDataProps {
   nome: string;
 }
 
+
 export const Home = () => {
   const [categories, setCategories] = useState<CategoriesCardProps[]>([]);
   const [userData, setUserData] = useState<UserDataProps>();
@@ -45,6 +49,10 @@ export const Home = () => {
   }, []);
 
   return (
+
+    <View>
+      <Text>Home</Text>
+
     <View style={styles.mainContainer}>
       <View style={styles.titleContainer}>
         <Image source={{ uri: userData?.foto }} style={styles.image} />
@@ -58,6 +66,7 @@ export const Home = () => {
           keyExtractor={(item) => item.id}
         />
       </View>
+
     </View>
   );
 };
