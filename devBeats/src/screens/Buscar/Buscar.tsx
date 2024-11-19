@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import axios from "axios";
 import { LinearGradient } from "expo-linear-gradient";
+import { useNavigation } from "@react-navigation/native";
 import { buscarCss } from "./buscarCss";
 
 interface Playlist {
@@ -84,19 +85,25 @@ export function Buscar() {
         },
       });
 
-      const allItems: SearchItem[] = [
-        ...response.data.tracks.items,
-        ...response.data.albums.items,
-        ...response.data.artists.items,
-        ...response.data.playlists.items,
+      // Separar os itens por tipo
+      const artists = response.data.artists.items;
+      const tracks = response.data.tracks.items;
+      const albums = response.data.albums.items;
+      const playlists = response.data.playlists.items;
+
+      // Concatenar, priorizando artistas
+      const orderedItems: SearchItem[] = [
+        ...artists,
+        ...tracks,
+        ...albums,
+        ...playlists,
       ];
 
-      setSearchResults(allItems);
+      setSearchResults(orderedItems);
     } catch (error) {
       console.error("Erro ao buscar resultados:", error);
     }
   };
-
   // Obter o token ao montar o componente
   useEffect(() => {
     getSpotifyToken();
@@ -128,11 +135,18 @@ export function Buscar() {
 
   // Renderizar cada item da busca
   const renderSearchItem = ({ item }: { item: SearchItem }) => {
+    const navigation = useNavigation();
     // Determinar a URL da imagem com base no tipo de item
     const imageUrl =
       item.type === "track" && item.album?.images?.[0]?.url
         ? item.album.images[0].url
         : item.images?.[0]?.url || "default_image_url";
+
+    const handlePress = () => {
+      if (item.type === "artist") {
+        navigation.navigate("ArtistDetail", { artistId: item.id }); // colocar navegação
+      }
+    };
 
     return (
       <View style={buscarCss.item}>
