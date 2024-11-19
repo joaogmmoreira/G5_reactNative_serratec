@@ -1,9 +1,10 @@
 import React from "react";
+import { View, Text } from "react-native";
 
 export const Home = () => {
   return (
-    <div>
-      <h1>Home</h1>
-    </div>
+    <View>
+      <Text>Home</Text>
+    </View>
   );
 };
