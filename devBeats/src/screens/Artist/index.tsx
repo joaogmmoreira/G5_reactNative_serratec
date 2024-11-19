@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text, FlatList, Image, StyleSheet } from "react-native";
 import { fetchTopTracks, fetchAlbums } from "../../services/spotifyApi";
 import { styles } from "./styles";
+import { useNavigation } from "@react-navigation/native";
 
 interface Album {
   id: string;
@@ -16,24 +17,26 @@ interface Track {
 
 interface ArtistDetailProps {
   route: {
-    params: {
-      artistId: string;
-    };
+    params: string;
   };
 }
 
-export function Artist(id: string) {
+export function Artist({ route }: ArtistDetailProps) {
+  const { params } = route;
+  const navigate = useNavigation<any>();
   const [topTracks, setTopTracks] = useState<Track[]>([]);
   const [albums, setAlbums] = useState<Album[]>([]);
 
   useEffect(() => {
     const handleTopTracks = async () => {
-      const response = await fetchTopTracks(id);
+      if (!params) navigate.navigate("Home");
+      const response = await fetchTopTracks(params);
       setTopTracks(response.tracks);
     };
 
     const handleAlbums = async () => {
-      const response = await fetchAlbums(id);
+      if (!params) navigate.navigate("Home");
+      const response = await fetchAlbums(params);
       setAlbums(response.items);
     };
     handleTopTracks();

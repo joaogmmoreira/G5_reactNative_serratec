@@ -14,12 +14,13 @@ export type RootTabParamList = {
   Home: undefined;
   Search: undefined;
   Login: undefined;
+  Artist: undefined;
 };
 
 export function BottomTabRoutes() {
   return (
     <Tab.Navigator
-      initialRouteName="Home"
+      // initialRouteName="Home"
       screenOptions={{
         headerShown: false,
         tabBarStyle: { backgroundColor: "#000", paddingBottom: 2 },
@@ -42,8 +43,8 @@ export function BottomTabRoutes() {
             <Icon name="search" color={color} size={24} />
           ),
         }}
-        name="Search" // Nome para a rota da aba
-        component={Buscar} // Associando à tela Buscar
+        name="Search"
+        component={Buscar}
       />
     </Tab.Navigator>
   );

@@ -7,6 +7,7 @@ interface Playlist {
   images: { url: string }[];
   name: string;
   type: string;
+  id?: string;
 }
 
 interface SearchItems {
@@ -14,6 +15,7 @@ interface SearchItems {
   name: string;
   type?: string;
   album?: { images: { url: string }[] };
+  id: string;
 }
 
 interface PlaylistCardProps {
@@ -22,9 +24,12 @@ interface PlaylistCardProps {
 
 export const PlaylistCard: React.FC<PlaylistCardProps> = ({ item }) => {
   const navigate = useNavigation<any>();
-  const handlePress = () => {
-    navigate.navigate("Artista");
-    // props para artista
+  const handlePress = (type: string) => {
+    if (type === "playlist") {
+      return navigate.navigate("Playlist", item.id);
+    }
+    // if (type === "album") return navigate.navigate("album", item.id);
+    return navigate.navigate("Artista", item.id);
   };
 
   const imageUrl = () => {
@@ -38,8 +43,19 @@ export const PlaylistCard: React.FC<PlaylistCardProps> = ({ item }) => {
       return item.images?.[0]?.url || "default_image_url";
     }
   };
+
+  const artistOrPlaylist = () => {
+    if (item.type === "artist") {
+    } else if (item.type === "playlist") {
+      return "playlist";
+    }
+    return "artist";
+  };
   return (
-    <TouchableOpacity onPress={() => handlePress()} style={styles.item}>
+    <TouchableOpacity
+      onPress={() => handlePress(artistOrPlaylist())}
+      style={styles.item}
+    >
       <Image source={{ uri: imageUrl() }} style={styles.image} />
       <Text style={styles.text}>{item.name}</Text>
     </TouchableOpacity>

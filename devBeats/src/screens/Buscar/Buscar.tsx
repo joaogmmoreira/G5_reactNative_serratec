@@ -1,21 +1,12 @@
 import React, { useEffect, useState } from "react";
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TextInput,
-} from "react-native";
-import axios from "axios";
+import { FlatList, TextInput } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { useNavigation } from "@react-navigation/native";
 import { buscarCss } from "./buscarCss";
 import {
   fetchFeaturedPlaylists,
   fetchSearchResults,
 } from "../../services/spotifyApi";
-import { PlaylistCard } from "../../components/PlaylistCard";
+import { PlaylistCard } from "../../components/SearchCard";
 
 interface Playlist {
   id: string;
@@ -67,6 +58,8 @@ export function Buscar() {
     if (searchTerm) {
       handleSearchResults(searchTerm);
     }
+    console.log(searchResults);
+    console.log(playlists);
   }, [searchTerm]);
 
   return (
