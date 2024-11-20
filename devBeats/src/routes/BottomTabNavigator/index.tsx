@@ -1,31 +1,34 @@
 import React, { useContext } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationProp } from "@react-navigation/native";
-import { Home } from "../../screens/Home";
+
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Buscar } from "../../screens/Buscar/Buscar";
 
-const Tab = createBottomTabNavigator<RootTabParamList>();
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-export type ScreenNames = ["Home", "Auth", "Login"];
-export type TabNavigation = NavigationProp<RootTabParamList>;
+import { Home } from "../../screens/Home";
+import  PlaylistsPage   from "../../screens/Playlist";
+import PlaylistDetailsPage from "../../screens/PlaylistDetail";
 
-export type RootTabParamList = {
+
+type RootStackParamList = {
   Home: undefined;
-  Search: undefined;
-  Login: undefined;
-  Artist: undefined;
+  PlaylistDetails: { playlistId: string };
 };
 
-export function BottomTabRoutes() {
+const Stack = createStackNavigator<RootStackParamList>();
+const Tab = createBottomTabNavigator();
+
+function BottomTabRoutes() {
   return (
     <Tab.Navigator
-      // initialRouteName="Home"
       screenOptions={{
         headerShown: false,
-        tabBarStyle: { backgroundColor: "#000", paddingBottom: 2 },
-        tabBarInactiveTintColor: "#aaa",
-        tabBarActiveTintColor: "#fff",
+        tabBarStyle: { backgroundColor: '#000', paddingBottom: 2 },
+        tabBarInactiveTintColor: '#aaa',
+        tabBarActiveTintColor: '#fff',
       }}
     >
       <Tab.Screen
@@ -37,6 +40,7 @@ export function BottomTabRoutes() {
         name="Home"
         component={Home}
       />
+
       <Tab.Screen
         options={{
           tabBarIcon: ({ color }) => (
@@ -46,6 +50,27 @@ export function BottomTabRoutes() {
         name="Search"
         component={Buscar}
       />
+
+      <Tab.Screen
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Icon name="music" color={color} size={24} />
+          ),
+        }}
+        name="Playlists"
+        component={PlaylistsPage}
+      />
     </Tab.Navigator>
+  );
+}
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={BottomTabRoutes} />
+        <Stack.Screen name="PlaylistDetails" component={PlaylistDetailsPage} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }

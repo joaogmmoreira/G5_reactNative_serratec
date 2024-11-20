@@ -60,6 +60,17 @@ export const fetchFeaturedPlaylists = async () => {
   }
 };
 
+export const fetchPlaylistDetails = async () => {
+  try {
+    //const response = await api.get(`/playlists/${playlistId}`);
+    const response = await api.get("/browse/featured-playlists");
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar detalhes da playlist:", error);
+  }
+};
+
+
 export const fetchSearchResults = async (term: string) => {
   try {
     const response = await api.get("/search", {
@@ -96,3 +107,4 @@ export const fetchAlbums = async (artistId: string) => {
     console.error("Erro ao buscar álbuns:", error);
   }
 };
+
