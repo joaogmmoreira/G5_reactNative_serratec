@@ -11,7 +11,13 @@ import { createSession } from "../services/backendApi";
 import { createSpotifySession } from "../services/spotifyApi";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export const AuthContext = createContext<AuthContextType | null>(null);
+export const AuthContext = createContext<AuthContextType>({
+  authenticated: false,
+  user: null,
+  loading: true,
+  login: () => {},
+  logout: () => {},
+});
 
 export default function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<string | null>(null);
@@ -79,22 +85,25 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     navigate.navigate("Login");
   };
 
+  const checkStoredToken = async () => {
+    const storedUser = await AsyncStorage.getItem("user");
+    const storedToken = await AsyncStorage.getItem("token");
+    if (storedToken && storedUser) {
+      setUser(storedToken);
+
+      setToken(storedToken);
+
+      setAuthenticated(true);
+    }
+    setLoading(false);
+  };
+
   useEffect(() => {
-    const checkStoredToken = async () => {
-      const storedUser = await AsyncStorage.getItem("user");
-      const storedToken = await AsyncStorage.getItem("token");
-      if (storedToken && storedUser) {
-        setUser(storedToken);
-
-        setToken(storedToken);
-
-        setAuthenticated(true);
-      }
-      setLoading(false);
-    };
     checkStoredToken();
   }, []);
 
+  // console.log("authenticated", authenticated);
+  // useCallback
   const value = useMemo<IAuth>(
     () => ({
       authenticated,

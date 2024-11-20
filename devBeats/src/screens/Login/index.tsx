@@ -28,8 +28,7 @@ export const Login = () => {
     formValidation();
   }, [form]);
 
-  const authContext = useContext(AuthContext);
-  const login = authContext ? authContext.login : () => {};
+  const { login } = useContext(AuthContext);
 
   const formValidation = () => {
     const isEmailValid = /\S+@\S+\.\S+/.test(form.email);

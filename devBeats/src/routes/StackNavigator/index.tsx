@@ -8,14 +8,14 @@ import { Artist } from "../../screens/Artist";
 const Stack = createNativeStackNavigator();
 
 export function StackNavigator() {
-  const authContext = useContext(AuthContext);
-  const authenticated = authContext ? authContext.authenticated : false;
+  const { authenticated } = useContext(AuthContext);
+
   return (
     <Stack.Navigator>
       {authenticated ? (
         <>
           <Stack.Screen
-            name="Home"
+            name="BottomTabRoutes"
             component={BottomTabRoutes}
             options={{ headerShown: false }}
           />

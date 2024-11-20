@@ -26,24 +26,27 @@ interface UserDataProps {
 }
 
 export const Home = () => {
+  console.log("Fred");
   const [categories, setCategories] = useState<CategoriesCardProps[]>([]);
   const [userData, setUserData] = useState<UserDataProps>();
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      const email = await AsyncStorage.getItem("user");
-      if (email) {
-        const response = await getUserName(email);
-        return setUserData(response.data[0]);
-      }
-    };
-    const fetchData = async () => {
-      const data = await getCategories();
-      setCategories(data.categories.items);
-    };
     fetchUserData();
     fetchData();
   }, []);
+
+  const fetchUserData = async () => {
+    const email = await AsyncStorage.getItem("user");
+    if (email) {
+      const response = await getUserName(email);
+      return setUserData(response.data[0]);
+    }
+  };
+
+  const fetchData = async () => {
+    const data = await getCategories();
+    setCategories(data.categories.items);
+  };
 
   return (
     <Gradient>
