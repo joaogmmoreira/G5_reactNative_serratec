@@ -6,7 +6,6 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 16,
-    // backgroundColor: "#000000",
   },
   logo: {
     width: 160,
@@ -29,7 +28,7 @@ export const styles = StyleSheet.create({
   inputContainer: {
     width: "100%",
     height: "35%",
-    backgroundColor: "#231F1E",
+    // backgroundColor: "#222",
     padding: 25,
     borderRadius: 8,
     marginBottom: 50,
