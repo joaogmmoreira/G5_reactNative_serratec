@@ -26,7 +26,6 @@ interface UserDataProps {
 }
 
 export const Home = () => {
-  console.log("Fred");
   const [categories, setCategories] = useState<CategoriesCardProps[]>([]);
   const [userData, setUserData] = useState<UserDataProps>();
 
