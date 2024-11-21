@@ -35,6 +35,7 @@ export function Buscar() {
   const handleSearchResults = async (term: string) => {
     const response = await fetchSearchResults(term);
 
+    console.log(response);
     const artists = response.artists.items;
     const tracks = response.tracks.items;
     const albums = response.albums.items;
@@ -47,7 +48,11 @@ export function Buscar() {
       ...playlists,
     ];
 
-    setSearchResults(orderedItems);
+    const filteredItems = orderedItems.filter(
+      (item) => item !== null && item !== undefined
+    );
+
+    setSearchResults(filteredItems);
   };
 
   useEffect(() => {
@@ -71,7 +76,7 @@ export function Buscar() {
       />
 
       {/* FlatList condicional */}
-      {searchTerm ? (
+      {searchResults.length > 0 ? (
         <FlatList
           data={searchResults}
           renderItem={({ item }) => <SearchCard item={item} />}
