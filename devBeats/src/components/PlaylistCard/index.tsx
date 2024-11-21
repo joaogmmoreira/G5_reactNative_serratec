@@ -46,7 +46,12 @@ export function PlaylistCard(props: PlaylistCardProps) {
             <Text style={styles.songArtist}>{description}</Text>
           </View>
         </View>
-        <Icon style={styles.songText} name="dots-three-vertical" />
+        <Icon
+          color={"#fff"}
+          size={15}
+          style={styles.bottomTres}
+          name="dots-three-vertical"
+        />
       </TouchableOpacity>
     </View>
   );

@@ -4,6 +4,7 @@ import { getUserName } from "../../services/backendApi";
 import { View, FlatList, Text, Image } from "react-native";
 import { CategoriesCard } from "../../components/CategoriesCard";
 import { styles } from "./styles";
+import { LinearGradient } from "expo-linear-gradient";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Gradient } from "../../components/Gradient/Gradient";
 
@@ -56,7 +57,8 @@ export const Home = () => {
   };
 
   return (
-    <Gradient>
+    <LinearGradient colors={["#065055", "#000000"]} style={styles.container}>
+      {/* // <Gradient> */}
       <View style={styles.mainContainer}>
         <View style={styles.titleContainer}>
           <Image source={{ uri: userData?.foto }} style={styles.image} />
@@ -74,6 +76,7 @@ export const Home = () => {
           />
         </View>
       </View>
-    </Gradient>
+      {/* // </Gradient> */}
+    </LinearGradient>
   );
 };

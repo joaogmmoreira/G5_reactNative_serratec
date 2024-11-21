@@ -22,14 +22,16 @@ export const styles = StyleSheet.create({
     width: "90%",
   },
   pageTitle: {
-    fontSize: 18,
+    marginLeft: 20,
+    fontSize: 28,
     color: "white",
     textAlign: "center",
     fontFamily: "Roboto, sans-serif",
     fontWeight: "bold",
   },
   songsQty: {
-    fontSize: 12,
+    marginLeft: 20,
+    fontSize: 14,
     color: "#999",
     textAlign: "center",
     fontFamily: "Roboto, sans-serif",
@@ -63,6 +65,9 @@ export const styles = StyleSheet.create({
     color: "#555",
     fontFamily: "Roboto, sans-serif",
   },
+  bottomUp: {
+    marginLeft: 20
+  },
   containerHeaderMenu: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -76,12 +81,14 @@ export const styles = StyleSheet.create({
     width: "30%",
   },
   controlButtonShuffle: {
+    marginLeft: 20,
     padding: 15,
-    color: "#1DB954",
+    color: "#0b8185",
     fontSize: 24,
   },
   controlButtonPause: {
-    color: "#1DB954",
+    marginLeft: 10,
+    color: "#0b8185",
     fontSize: 48,
   },
   containerMenu: {

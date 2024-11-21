@@ -76,8 +76,10 @@ export const Playlist = ({ route }: PlaylistDetailProps) => {
               style={styles.image}
             />
             <View style={styles.containerText}>
-              <Text>{playlistData.name}</Text>
-              <Text>{playlistData.description}</Text>
+              <Text style={styles.name1}>{playlistData.name}</Text>
+              <Text style={styles.description1}>
+                {playlistData.description}
+              </Text>
             </View>
           </View>
           <FlatList
