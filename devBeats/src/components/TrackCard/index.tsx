@@ -1,17 +1,17 @@
 import React from "react";
-import { Text, TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity, Image, View } from "react-native";
 import { styles } from "./styles";
+import { PlaylistTrack } from "../../screens/Playlist";
 
-export interface TrackCardProps {
-  item: {
-    name: string;
-  };
-}
-
-export const TrackCard: React.FC<TrackCardProps> = ({ item }) => {
+export const TrackCard: React.FC<PlaylistTrack> = (item) => {
+  const { track, preview_url, href } = item;
   return (
     <TouchableOpacity style={styles.container}>
-      <Text style={styles.title}>{item.name}</Text>
+      <Image source={{ uri: track.album.images[0].url }} style={styles.image} />
+      <View style={styles.containerText}>
+        <Text style={styles.songTitle}>{track.name}</Text>
+        <Text style={styles.artistTitle}>{track.artists[0].name}</Text>
+      </View>
     </TouchableOpacity>
   );
 };

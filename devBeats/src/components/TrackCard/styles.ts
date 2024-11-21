@@ -4,11 +4,26 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: "#fff",
+    flexDirection: "row",
   },
-  title: {
+  image: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    marginRight: 16,
+  },
+  containerText: {
+    flex: 1,
+    justifyContent: "center",
+  },
+  songTitle: {
     fontSize: 18,
     fontWeight: "bold",
     marginBottom: 8,
+    color: "#fff",
+  },
+  artistTitle: {
+    fontSize: 16,
+    color: "#999",
   },
 });

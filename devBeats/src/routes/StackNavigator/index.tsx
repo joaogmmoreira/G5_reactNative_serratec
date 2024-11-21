@@ -4,6 +4,8 @@ import { BottomTabRoutes } from "../BottomTabNavigator";
 import { AuthContext } from "../../context/Auth";
 import { Login } from "../../screens/Login";
 import { Artist } from "../../screens/Artist";
+import { Playlist } from "../../screens/Playlist";
+import { Library } from "../../screens/Library";
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +24,16 @@ export function StackNavigator() {
           <Stack.Screen
             name="Artista"
             component={Artist}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Playlist"
+            component={Playlist}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Library"
+            component={Library}
             options={{ headerShown: false }}
           />
         </>

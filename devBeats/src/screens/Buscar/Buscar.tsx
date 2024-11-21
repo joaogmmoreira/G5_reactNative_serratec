@@ -35,7 +35,6 @@ export function Buscar() {
   const handleSearchResults = async (term: string) => {
     const response = await fetchSearchResults(term);
 
-    console.log(response);
     const artists = response.artists.items;
     const tracks = response.tracks.items;
     const albums = response.albums.items;
@@ -67,15 +66,12 @@ export function Buscar() {
 
   return (
     <LinearGradient colors={["#065055", "#000000"]} style={buscarCss.container}>
-      {/* Campo de texto para pesquisa */}
       <TextInput
         style={buscarCss.input}
         placeholder="Procurar playlists, álbuns, artistas ou músicas..."
         onChangeText={setSearchTerm}
         value={searchTerm}
       />
-
-      {/* FlatList condicional */}
       {searchResults.length > 0 ? (
         <FlatList
           data={searchResults}

@@ -102,7 +102,6 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     checkStoredToken();
   }, []);
 
-  // console.log("authenticated", authenticated);
   // useCallback
   const value = useMemo<IAuth>(
     () => ({

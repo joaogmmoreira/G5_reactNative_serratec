@@ -28,25 +28,27 @@ export function Artist({ route }: ArtistDetailProps) {
   const [albums, setAlbums] = useState<Album[]>([]);
 
   const navigate = useNavigation<any>();
-  const params = route?.params;
 
   useEffect(() => {
-    const handleTopTracks = async () => {
-      if (!params) return navigate.navigate("Home");
-
-      const response = await fetchTopTracks(params);
-
-      setTopTracks(response.tracks);
-    };
-
-    const handleAlbums = async () => {
-      if (!params) return navigate.navigate("Home");
-      const response = await fetchAlbums(params);
-      setAlbums(response.items);
-    };
     handleTopTracks();
     handleAlbums();
   }, []);
+
+  const params = route?.params;
+
+  const handleTopTracks = async () => {
+    if (!params) return navigate.navigate("Home");
+
+    const response = await fetchTopTracks(params);
+
+    setTopTracks(response.tracks);
+  };
+
+  const handleAlbums = async () => {
+    if (!params) return navigate.navigate("Home");
+    const response = await fetchAlbums(params);
+    setAlbums(response.items);
+  };
 
   return (
     <View style={styles.container}>

@@ -44,7 +44,15 @@ export const Home = () => {
 
   const fetchData = async () => {
     const data = await getCategories();
-    setCategories(data.categories.items);
+    const filteredData = data.categories.items.filter(
+      (category: CategoriesCardProps) => {
+        return (
+          category.name !== "Feito para você" && category.name !== "Em casa"
+        );
+      }
+    );
+
+    setCategories(filteredData);
   };
 
   return (
