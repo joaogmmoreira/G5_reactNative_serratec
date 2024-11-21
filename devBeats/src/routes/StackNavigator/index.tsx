@@ -4,7 +4,7 @@ import { BottomTabRoutes } from "../BottomTabNavigator";
 import { AuthContext } from "../../context/Auth";
 import { Login } from "../../screens/Login";
 import { Artist } from "../../screens/Artist";
-import { AlbumDetail } from "../../screens/Album";
+// import { AlbumDetail } from "../../screens/Album";
 
 const Stack = createNativeStackNavigator();
 
