@@ -3,7 +3,10 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationProp } from "@react-navigation/native";
 import { Home } from "../../screens/Home";
 import Icon from "react-native-vector-icons/FontAwesome";
+import Icon2 from "react-native-vector-icons/MaterialIcons";
 import { Buscar } from "../../screens/Buscar/Buscar";
+import { Library } from "../../screens/Library";
+import { Artist } from "../../screens/Artist";
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
@@ -15,6 +18,7 @@ export type RootTabParamList = {
   Search: undefined;
   Login: undefined;
   Artist: undefined;
+  Library: undefined;
 };
 
 export function BottomTabRoutes() {
@@ -45,6 +49,15 @@ export function BottomTabRoutes() {
         }}
         name="Search"
         component={Buscar}
+      />
+      <Tab.Screen
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Icon2 name="my-library-music" color={color} size={24} />
+          ),
+        }}
+        name="Library"
+        component={Library}
       />
     </Tab.Navigator>
   );

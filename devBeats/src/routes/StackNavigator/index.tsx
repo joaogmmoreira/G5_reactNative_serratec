@@ -6,7 +6,6 @@ import { Login } from "../../screens/Login";
 import { Artist } from "../../screens/Artist";
 import { Playlist } from "../../screens/Playlist";
 import { Library } from "../../screens/Library";
-<!-- import { AlbumDetail } from "../../screens/Album"; -->
 
 const Stack = createNativeStackNavigator();
 
@@ -23,25 +22,24 @@ export function StackNavigator() {
             options={{ headerShown: false }}
           />
           <Stack.Screen
-            name="Artista"
+            name="artist"
             component={Artist}
             options={{ headerShown: false }}
           />
 
           <Stack.Screen
-            name="Playlist"
+            name="playlist"
             component={Playlist}
             options={{ headerShown: false }}
           />
           <Stack.Screen
-            name="Library"
+            name="library"
             component={Library}
             options={{ headerShown: false }}
           />
-
           {/* <Stack.Screen
-            name="Album"
-            component={AlbumDetail}
+            name="artist"
+            component={Artist}
             options={{ headerShown: false }}
           /> */}
         </>

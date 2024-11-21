@@ -29,7 +29,7 @@ export function PlaylistCard(props: PlaylistCardProps) {
   const navigate = useNavigation<any>();
 
   const handlePress = () => {
-    return navigate.navigate("Playlist", { id });
+    return navigate.navigate("playlist", { id, type: "playlist" });
   };
 
   return (

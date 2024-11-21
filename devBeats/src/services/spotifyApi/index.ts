@@ -125,3 +125,32 @@ export const fetchPlaylistTracks = async (playlistId: string) => {
     console.error("Erro ao buscar músicas da playlist:", error);
   }
 };
+
+export const fetchAlbum = async (albumId: string) => {
+  try {
+    const response = await api.get(`/albums/${albumId}`);
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar álbum:", error);
+  }
+};
+
+export const getCategoriesPlaylists = async (categoryId: string) => {
+  try {
+    const response = await api.get(
+      `/browse/categories/${categoryId}/playlists`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar playlists da categoria:", error);
+  }
+};
+
+// export const fetchArtists = async (artistsId: string) => {
+//   try {
+//     const response = await api.get(`/artists/ids=${artistsId}`);
+//     return response.data;
+//   } catch (error) {
+//     console.error("Erro ao buscar artista:", error);
+//   }
+// };
