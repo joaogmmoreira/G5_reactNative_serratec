@@ -35,10 +35,6 @@ export const SearchCard: React.FC<PlaylistCardProps> = ({ item }) => {
     if (type === "artist") {
       return navigate.navigate("artist", { id: item.id, type: "artist" });
     }
-    // if (type === "album") {
-    //   return navigate.navigate("Playlist", { id: item.id, type: "album" });
-    // }
-    // return navigate.navigate("Artista", { id: item.id, type: "artist" });
   };
 
   const artistOrPlaylist = () => {
