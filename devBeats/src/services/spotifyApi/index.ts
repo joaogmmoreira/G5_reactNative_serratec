@@ -86,7 +86,7 @@ export const fetchTopTracks = async (artistId: string) => {
   }
 };
 
-export const fetchAlbums = async (artistId: string) => {
+export const fetchAlbums = async (artistId: string | undefined) => {
   try {
     const response = await api.get(`/artists/${artistId}/albums`, {
       params: { include_groups: "album,single", limit: 10 },
@@ -94,5 +94,34 @@ export const fetchAlbums = async (artistId: string) => {
     return response.data;
   } catch (error) {
     console.error("Erro ao buscar álbuns:", error);
+  }
+};
+
+export const fetchCategory = async (categoryId: string) => {
+  try {
+    const response = await api.get(
+      `/browse/categories/${categoryId}/playlists`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar playlist:", error);
+  }
+};
+
+export const fetchPlaylistData = async (playlistId: string) => {
+  try {
+    const response = await api.get(`/playlists/${playlistId}`);
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar playlist:", error);
+  }
+};
+
+export const fetchPlaylistTracks = async (playlistId: string) => {
+  try {
+    const response = await api.get(`/playlists/${playlistId}/tracks`);
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar músicas da playlist:", error);
   }
 };

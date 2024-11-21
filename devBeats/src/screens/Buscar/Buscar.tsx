@@ -6,7 +6,7 @@ import {
   fetchFeaturedPlaylists,
   fetchSearchResults,
 } from "../../services/spotifyApi";
-import { PlaylistCard } from "../../components/SearchCard";
+import { SearchCard } from "../../components/SearchCard";
 
 interface Playlist {
   id: string;
@@ -47,7 +47,11 @@ export function Buscar() {
       ...playlists,
     ];
 
-    setSearchResults(orderedItems);
+    const filteredItems = orderedItems.filter(
+      (item) => item !== null && item !== undefined
+    );
+
+    setSearchResults(filteredItems);
   };
 
   useEffect(() => {
@@ -58,25 +62,20 @@ export function Buscar() {
     if (searchTerm) {
       handleSearchResults(searchTerm);
     }
-    console.log(searchResults);
-    console.log(playlists);
   }, [searchTerm]);
 
   return (
     <LinearGradient colors={["#065055", "#000000"]} style={buscarCss.container}>
-      {/* Campo de texto para pesquisa */}
       <TextInput
         style={buscarCss.input}
         placeholder="Procurar playlists, álbuns, artistas ou músicas..."
         onChangeText={setSearchTerm}
         value={searchTerm}
       />
-
-      {/* FlatList condicional */}
-      {searchTerm ? (
+      {searchResults.length > 0 ? (
         <FlatList
           data={searchResults}
-          renderItem={({ item }) => <PlaylistCard item={item} />}
+          renderItem={({ item }) => <SearchCard item={item} />}
           keyExtractor={(item) => item.id}
           numColumns={2}
           contentContainerStyle={buscarCss.flatListContainer}
@@ -84,7 +83,7 @@ export function Buscar() {
       ) : (
         <FlatList
           data={playlists}
-          renderItem={({ item }) => <PlaylistCard item={item} />}
+          renderItem={({ item }) => <SearchCard item={item} />}
           keyExtractor={(item) => item.id}
           numColumns={2}
           contentContainerStyle={buscarCss.flatListContainer}
