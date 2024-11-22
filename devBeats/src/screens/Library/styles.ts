@@ -14,6 +14,7 @@ export const styles = StyleSheet.create({
     justifyContent: "space-between",
     width: "90%",
     marginBottom: 20,
+    padding: 10,
   },
   containerTitle: {
     flexDirection: "row",
@@ -66,7 +67,7 @@ export const styles = StyleSheet.create({
     fontFamily: "Roboto, sans-serif",
   },
   bottomUp: {
-    marginLeft: 20
+    marginLeft: 20,
   },
   containerHeaderMenu: {
     flexDirection: "row",
@@ -83,12 +84,12 @@ export const styles = StyleSheet.create({
   controlButtonShuffle: {
     marginLeft: 20,
     padding: 15,
-    color: "#0b8185",
+    color: "white",
     fontSize: 24,
   },
   controlButtonPause: {
     marginLeft: 10,
-    color: "#0b8185",
+    color: "white",
     fontSize: 48,
   },
   containerMenu: {

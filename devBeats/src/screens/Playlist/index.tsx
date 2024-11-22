@@ -10,6 +10,7 @@ import {
 import { TrackCard } from "../../components/TrackCard";
 import { AlbumCard } from "../../components/AlbumCard";
 import { styles } from "./styles";
+import { BackArrow } from "../../components/BackArrow";
 
 export interface PlaylistDetailProps {
   route?: {
@@ -120,6 +121,7 @@ export const Playlist = ({ route }: PlaylistDetailProps) => {
 
   return (
     <Gradient>
+      <BackArrow />
       {type === "playlist" ? (
         <>
           <View style={styles.container}>
@@ -128,10 +130,8 @@ export const Playlist = ({ route }: PlaylistDetailProps) => {
               style={styles.image}
             />
             <View style={styles.containerText}>
-              <Text style={styles.name1}>{playlistData.name}</Text>
-              <Text style={styles.description1}>
-                {playlistData.description}
-              </Text>
+              <Text style={styles.name}>{playlistData.name}</Text>
+              <Text style={styles.description}>{playlistData.description}</Text>
             </View>
           </View>
           <FlatList
@@ -141,12 +141,11 @@ export const Playlist = ({ route }: PlaylistDetailProps) => {
           />
         </>
       ) : (
-        // <Text>Album</Text>
         <>
           <View style={styles.container}>
             <Image source={{ uri: album.images[0].url }} style={styles.image} />
             <View style={styles.containerText}>
-              <Text>{album.name}</Text>
+              <Text style={styles.name}>{album.name}</Text>
             </View>
           </View>
           <FlatList

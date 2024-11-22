@@ -16,6 +16,7 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
     paddingLeft: 10,
     color: "#fff",
+    marginBottom: 20,
   },
   titleContainer: {
     flexDirection: "row",
@@ -30,6 +31,5 @@ export const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    
   },
 });

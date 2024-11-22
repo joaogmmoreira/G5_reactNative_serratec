@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { fetchCategory } from "../../services/spotifyApi";
 import { FlatList } from "react-native-gesture-handler";
 import Icon from "react-native-vector-icons/MaterialIcons";
@@ -9,7 +9,7 @@ import { styles } from "./styles";
 import { PlaylistCard } from "../../components/PlaylistCard";
 import { Gradient } from "../../components/Gradient/Gradient";
 import { getCategoriesPlaylists } from "../../services/spotifyApi";
-
+import { useNavigation } from "@react-navigation/native";
 export interface LibraryDetailProps {
   route?: {
     params: {
@@ -42,6 +42,7 @@ export interface Route {
 export const Library = ({ route }: LibraryDetailProps) => {
   const [playlists, setPlaylists] = useState<any[]>([]);
   const [userLibrary, setUserLibrary] = useState<any[]>([]);
+  const navigation = useNavigation();
 
   const id = route?.params?.id;
 
@@ -63,9 +64,12 @@ export const Library = ({ route }: LibraryDetailProps) => {
 
   return (
     <Gradient>
-      <View style={styles.containerHeader}>
-        <Icon2 name="arrow-left" size={20} color="#999" />
-      </View>
+      <TouchableOpacity
+        onPress={() => navigation.goBack()}
+        style={styles.containerHeader}
+      >
+        <Icon2 name="arrow-left" size={20} color="white" />
+      </TouchableOpacity>
       <View style={styles.containerTitle}>
         <Text style={styles.pageTitle}>
           {id ? `Playlists sugeridas` : `Suas Playlists`}
@@ -84,7 +88,7 @@ export const Library = ({ route }: LibraryDetailProps) => {
             style={styles.bottomUp}
             name="arrow-down-circle-outline"
             size={25}
-            color="#999"
+            color="white"
           />
         </View>
         <View style={styles.containerHeaderMenuButtons}>

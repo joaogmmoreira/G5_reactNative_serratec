@@ -57,8 +57,7 @@ export const Home = () => {
   };
 
   return (
-    <LinearGradient colors={["#065055", "#000000"]} style={styles.container}>
-      {/* // <Gradient> */}
+    <Gradient>
       <View style={styles.mainContainer}>
         <View style={styles.titleContainer}>
           <Image source={{ uri: userData?.foto }} style={styles.image} />
@@ -76,7 +75,6 @@ export const Home = () => {
           />
         </View>
       </View>
-      {/* // </Gradient> */}
-    </LinearGradient>
+    </Gradient>
   );
 };
