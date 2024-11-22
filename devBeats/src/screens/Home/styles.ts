@@ -11,6 +11,13 @@ export const styles = StyleSheet.create({
     paddingLeft: 10,
     color: "#fff",
   },
+  photoContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  gear: {
+    marginRight: 20,
+  },
   secondaryTitle: {
     fontSize: 18,
     fontWeight: "bold",
@@ -20,6 +27,7 @@ export const styles = StyleSheet.create({
   },
   titleContainer: {
     flexDirection: "row",
+    justifyContent: "space-between",
     alignItems: "center",
     marginBottom: 20,
   },

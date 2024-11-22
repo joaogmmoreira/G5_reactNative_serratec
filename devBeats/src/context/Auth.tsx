@@ -82,7 +82,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     setAuthenticated(false);
     await AsyncStorage.removeItem("user");
     await AsyncStorage.removeItem("token");
-    navigate.navigate("Login");
+    navigate.navigate("login");
   };
 
   const checkStoredToken = async () => {

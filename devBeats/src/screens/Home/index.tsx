@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { getCategories } from "../../services/spotifyApi";
 import { getUserName } from "../../services/backendApi";
-import { View, FlatList, Text, Image } from "react-native";
+import { View, FlatList, Text, Image, TouchableOpacity } from "react-native";
 import { CategoriesCard } from "../../components/CategoriesCard";
 import { styles } from "./styles";
-import { LinearGradient } from "expo-linear-gradient";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Gradient } from "../../components/Gradient/Gradient";
-import { LogoutButton } from "../../components/LogoutButton";
-import axios from "axios";
+import Icon from "react-native-vector-icons/FontAwesome";
+import { useNavigation } from "@react-navigation/native";
 
 export interface CategoriesCardProps {
   href: string;
@@ -31,6 +30,8 @@ interface UserDataProps {
 export const Home = () => {
   const [categories, setCategories] = useState<CategoriesCardProps[]>([]);
   const [userData, setUserData] = useState<UserDataProps>();
+
+  const navigation = useNavigation<any>();
 
   useEffect(() => {
     fetchUserData();
@@ -58,22 +59,24 @@ export const Home = () => {
     setCategories(filteredData);
   };
 
-  const handleLogout = async () => {
-    try {
-      await AsyncStorage.clear();
-      console.log("Usuário deslogado e AsyncStorage limpo.");
-    } catch (error) {
-      console.error("Erro ao limpar AsyncStorage:", error);
-    }
+  const handlePress = () => {
+    navigation.navigate("account");
   };
+  // const handleLogout = async () => {
+  //   return logout();
+  // };
 
   return (
     <Gradient>
-      <LogoutButton onLogout={handleLogout} />
       <View style={styles.mainContainer}>
         <View style={styles.titleContainer}>
-          <Image source={{ uri: userData?.foto }} style={styles.image} />
-          <Text style={styles.mainTitle}>Olá, {userData?.nome}</Text>
+          <View style={styles.photoContainer}>
+            <Image source={{ uri: userData?.foto }} style={styles.image} />
+            <Text style={styles.mainTitle}>Olá, {userData?.nome}</Text>
+          </View>
+          <TouchableOpacity style={styles.gear} onPress={() => handlePress()}>
+            <Icon name="gear" color={"white"} size={18} />
+          </TouchableOpacity>
         </View>
         <Text style={styles.secondaryTitle}>
           Olha o que preparamos para você

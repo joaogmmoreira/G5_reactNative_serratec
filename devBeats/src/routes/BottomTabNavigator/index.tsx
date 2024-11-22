@@ -1,18 +1,17 @@
 import React, { useContext } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationProp } from "@react-navigation/native";
-import { Home } from "../../screens/Home";
 import Icon from "react-native-vector-icons/FontAwesome";
 import Icon2 from "react-native-vector-icons/MaterialIcons";
 import { Buscar } from "../../screens/Buscar/Buscar";
 import { Library } from "../../screens/Library";
-// import { Artist } from "../../screens/Artist";
 import { StackNavigator } from "../StackNavigator";
 import { Login } from "../../screens/Login";
 import { AuthContext } from "../../context/Auth";
 import { Playlist } from "../../screens/Playlist";
 import { Artist } from "../../screens/Artist";
 import { Player } from "../../screens/Player";
+import { Account } from "../../screens/Account";
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
@@ -28,6 +27,7 @@ export type RootTabParamList = {
   stackNav: undefined;
   playlist: undefined;
   player: undefined;
+  account: undefined;
 };
 
 export function BottomTabRoutes() {
@@ -90,6 +90,13 @@ export function BottomTabRoutes() {
             }}
             name="player"
             component={Player}
+          />
+          <Tab.Screen
+            options={{
+              tabBarButton: () => null,
+            }}
+            name="account"
+            component={Account}
           />
         </>
       ) : (
