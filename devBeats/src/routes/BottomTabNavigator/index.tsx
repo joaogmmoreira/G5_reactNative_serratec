@@ -10,6 +10,9 @@ import { Library } from "../../screens/Library";
 import { StackNavigator } from "../StackNavigator";
 import { Login } from "../../screens/Login";
 import { AuthContext } from "../../context/Auth";
+import { Playlist } from "../../screens/Playlist";
+import { Artist } from "../../screens/Artist";
+import { Player } from "../../screens/Player";
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
@@ -17,19 +20,20 @@ export type ScreenNames = ["Home", "Auth", "Login"];
 export type TabNavigation = NavigationProp<RootTabParamList>;
 
 export type RootTabParamList = {
-  Home: undefined;
-  Search: undefined;
-  Login: undefined;
-  Artist: undefined;
-  Library: undefined;
-  StackNav: undefined;
+  home: undefined;
+  search: undefined;
+  login: undefined;
+  artist: undefined;
+  library: undefined;
+  stackNav: undefined;
+  playlist: undefined;
+  player: undefined;
 };
 
 export function BottomTabRoutes() {
   const { authenticated } = useContext(AuthContext);
   return (
     <Tab.Navigator
-      // initialRouteName="Home"
       screenOptions={{
         headerShown: false,
         tabBarStyle: { backgroundColor: "#000", paddingBottom: 2 },
@@ -45,17 +49,8 @@ export function BottomTabRoutes() {
                 <Icon name="home" color={color} size={24} />
               ),
             }}
-            name="StackNav"
+            name="stackNav"
             component={StackNavigator}
-          />
-          <Tab.Screen
-            options={{
-              tabBarIcon: ({ color }) => (
-                <Icon name="home" color={color} size={24} />
-              ),
-            }}
-            name="Home"
-            component={Home}
           />
           <Tab.Screen
             options={{
@@ -63,7 +58,7 @@ export function BottomTabRoutes() {
                 <Icon name="search" color={color} size={24} />
               ),
             }}
-            name="Search"
+            name="search"
             component={Buscar}
           />
           <Tab.Screen
@@ -72,18 +67,37 @@ export function BottomTabRoutes() {
                 <Icon2 name="my-library-music" color={color} size={24} />
               ),
             }}
-            name="Library"
+            name="library"
             component={Library}
+          />
+          <Tab.Screen
+            options={{
+              tabBarButton: () => null,
+            }}
+            name="playlist"
+            component={Playlist}
+          />
+          <Tab.Screen
+            options={{
+              tabBarButton: () => null,
+            }}
+            name="artist"
+            component={Artist}
+          />
+          <Tab.Screen
+            options={{
+              tabBarButton: () => null,
+            }}
+            name="player"
+            component={Player}
           />
         </>
       ) : (
         <Tab.Screen
           options={{
-            tabBarIcon: ({ color }) => (
-              <Icon name="home" color={color} size={24} />
-            ),
+            tabBarButton: () => null,
           }}
-          name="Login"
+          name="login"
           component={Login}
         />
       )}

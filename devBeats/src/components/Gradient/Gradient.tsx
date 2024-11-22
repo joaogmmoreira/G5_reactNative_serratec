@@ -7,10 +7,7 @@ interface GradientProps {
 
 export const Gradient: React.FC<GradientProps> = ({ children }) => {
   return (
-    <LinearGradient
-      colors={["#333", "#222", "#111", "#000"]}
-      style={{ flex: 1 }}
-    >
+    <LinearGradient colors={["#065055", "#000000"]} style={{ flex: 1 }}>
       {children}
     </LinearGradient>
   );

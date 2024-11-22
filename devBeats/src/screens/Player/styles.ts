@@ -1,13 +1,19 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  container: {
+  mainContainer: {
     flex: 1,
-    backgroundColor: "#222",
     alignItems: "center",
     justifyContent: "flex-start",
     width: "100%",
-    paddingTop: 25,
+    // paddingTop: 25,
+  },
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "flex-start",
+    width: "100%",
+    // paddingTop: 25,
   },
   containerTitle: {
     flexDirection: "row",
@@ -20,12 +26,12 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   titleButton: {
-    color: "#999",
+    color: "white",
     fontSize: 12,
   },
   pageTitle1: {
     fontSize: 10,
-    color: "#999",
+    color: "white",
     textAlign: "center",
     fontFamily: "Roboto, sans-serif",
   },
@@ -39,7 +45,7 @@ export const styles = StyleSheet.create({
   },
   albumCover: {
     width: "90%",
-    height: "40%",
+    height: "50%",
     borderRadius: 10,
     marginTop: 40,
     marginBottom: 40,
@@ -53,13 +59,13 @@ export const styles = StyleSheet.create({
   },
   songTitle: {
     fontSize: 16,
-    color: "#999",
+    color: "white",
     fontWeight: "bold",
     alignSelf: "flex-start",
   },
   artist: {
     fontSize: 12,
-    color: "#999",
+    color: "white",
     paddingBottom: 10,
   },
   addToLibrary: {

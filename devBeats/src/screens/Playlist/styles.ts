@@ -2,35 +2,33 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    padding: 35,
     flexDirection: "row",
-    marginBottom: 20,
-    justifyContent: "center",
-    // alignItems: "center",
-  },
-  containerText: {
-    marginTop: 10,
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
-  },
-  name1: {
-    fontSize: 20,
-    fontWeight: '700',
-    color: '#fff'
-  },
-  description1: {
-    fontWeight: '400',
-    fontSize: 12,
-    color: '#fff'
+    marginTop: 20,
+    padding: 10,
   },
   image: {
-    left: -35,
-    top: -35,
-    width: 100,
-    height: 90,
+    width: 70,
+    height: 70,
     marginRight: 10,
     borderRadius: 5,
+  },
+  containerText: {
+    flex: 1,
+    marginTop: 10,
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "45%",
+  },
+  name: {
+    fontSize: 20,
+    fontWeight: "700",
+    color: "#fff",
+  },
+  description: {
+    fontWeight: "400",
+    fontSize: 12,
+    color: "#fff",
   },
 });
