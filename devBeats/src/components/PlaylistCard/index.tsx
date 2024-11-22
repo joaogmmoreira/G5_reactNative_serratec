@@ -9,7 +9,6 @@ import {
 import Icon from "react-native-vector-icons/Entypo";
 import { styles } from "./styles";
 import { useNavigation } from "@react-navigation/native";
-import { BackButton } from "../BackButton";
 
 interface PlaylistCardProps {
   id: string;

@@ -7,6 +7,8 @@ import { styles } from "./styles";
 import { LinearGradient } from "expo-linear-gradient";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Gradient } from "../../components/Gradient/Gradient";
+import { LogoutButton } from "../../components/LogoutButton";
+import axios from "axios";
 
 export interface CategoriesCardProps {
   href: string;
@@ -56,8 +58,18 @@ export const Home = () => {
     setCategories(filteredData);
   };
 
+  const handleLogout = async () => {
+    try {
+      await AsyncStorage.clear();
+      console.log("Usuário deslogado e AsyncStorage limpo.");
+    } catch (error) {
+      console.error("Erro ao limpar AsyncStorage:", error);
+    }
+  };
+
   return (
     <Gradient>
+      <LogoutButton onLogout={handleLogout} />
       <View style={styles.mainContainer}>
         <View style={styles.titleContainer}>
           <Image source={{ uri: userData?.foto }} style={styles.image} />

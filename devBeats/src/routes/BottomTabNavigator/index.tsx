@@ -12,7 +12,7 @@ import { Login } from "../../screens/Login";
 import { AuthContext } from "../../context/Auth";
 import { Playlist } from "../../screens/Playlist";
 import { Artist } from "../../screens/Artist";
-import { Player } from "../../screens/Player";
+import { Player } from "../../screens/Player/Index";
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
