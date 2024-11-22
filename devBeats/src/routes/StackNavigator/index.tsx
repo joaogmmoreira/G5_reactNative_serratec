@@ -6,7 +6,7 @@ import { Login } from "../../screens/Login";
 import { Artist } from "../../screens/Artist";
 import { Playlist } from "../../screens/Playlist";
 import { Library } from "../../screens/Library";
-<!-- import { AlbumDetail } from "../../screens/Album"; -->
+import { AlbumDetail } from "../../screens/Album";
 
 const Stack = createNativeStackNavigator();
 

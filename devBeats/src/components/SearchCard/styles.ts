@@ -3,20 +3,21 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   item: {
     flex: 1,
-    margin: 5,
+    marginTop: 60,
     alignItems: "center",
-    backgroundColor: "#f9f9f9",
-    borderRadius: 10,
-    padding: 10,
-  },
+    backgroundColor: "#RRGGBBAA",
+    padding: 5,
+color: "#fff"  },
   text: {
     textAlign: "center",
     fontWeight: "bold",
+    color: "white",
+    marginTop: -20,
   },
   image: {
-    width: 120,
-    height: 120,
-    borderRadius: 10,
-    marginBottom: 10,
+    width: 180,
+    height: 180,
+    borderRadius: 5,
+    marginBottom: 30,
   },
 });
