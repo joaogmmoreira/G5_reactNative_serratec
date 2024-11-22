@@ -5,6 +5,7 @@ import { getUserName } from "../../services/backendApi";
 import { styles } from "./styles";
 import { Gradient } from "../../components/Gradient/Gradient";
 import { BackArrow } from "../../components/BackArrow";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export interface User {
   id: number;
@@ -27,12 +28,8 @@ export const Account = () => {
     handleUserData();
   }, []);
 
-  useEffect(() => {
-    console.log(userData);
-  }, [userData]);
-
   const handleUserData = async () => {
-    const email = await localStorage.getItem("user");
+    const email = await AsyncStorage.getItem("user");
     if (email) {
       const response = await getUserName(email);
       const data = response.data[0];
