@@ -9,7 +9,7 @@ import { styles } from "./styles";
 export const Register = () => {
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [form, setForm] = useState({
-    name: "",
+    nome: "",
     email: "",
     password: "",
     doublePassword: "",
@@ -22,12 +22,12 @@ export const Register = () => {
   };
   const formValidation = () => {
     const isEmailValid = /\S+@\S+\.\S+/.test(form.email);
-    const nameValidation = form.name.length >= 3;
+    const nomeValidation = form.nome.length >= 3;
     const passwordValidation = form.password === form.doublePassword;
     const passwordLength = form.password.length >= 6;
 
     if (
-      nameValidation &&
+      nomeValidation &&
       isEmailValid &&
       passwordValidation &&
       passwordLength
@@ -54,7 +54,7 @@ export const Register = () => {
         <Text style={styles.text}>Registro</Text>
         <TextInput
           onChangeText={(value) => {
-            onChangeForm("name", value);
+            onChangeForm("nome", value);
           }}
           style={styles.input}
           placeholder="Nome Completo"

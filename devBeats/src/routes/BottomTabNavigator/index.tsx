@@ -41,6 +41,7 @@ export function BottomTabRoutes() {
         tabBarStyle: { backgroundColor: "#000", paddingBottom: 2 },
         tabBarInactiveTintColor: "#aaa",
         tabBarActiveTintColor: "#fff",
+        detachInactiveScreens: true,
       }}
     >
       {authenticated ? (
@@ -56,12 +57,26 @@ export function BottomTabRoutes() {
           />
           <Tab.Screen
             options={{
+              tabBarButton: () => null,
+            }}
+            name="playlist"
+            component={Playlist}
+          />
+          <Tab.Screen
+            options={{
               tabBarIcon: ({ color }) => (
                 <Icon name="search" color={color} size={24} />
               ),
             }}
             name="search"
             component={Buscar}
+          />
+          <Tab.Screen
+            options={{
+              tabBarButton: () => null,
+            }}
+            name="artist"
+            component={Artist}
           />
           <Tab.Screen
             options={{
@@ -76,15 +91,8 @@ export function BottomTabRoutes() {
             options={{
               tabBarButton: () => null,
             }}
-            name="playlist"
-            component={Playlist}
-          />
-          <Tab.Screen
-            options={{
-              tabBarButton: () => null,
-            }}
-            name="artist"
-            component={Artist}
+            name="account"
+            component={Account}
           />
           <Tab.Screen
             options={{
@@ -92,13 +100,6 @@ export function BottomTabRoutes() {
             }}
             name="player"
             component={Player}
-          />
-          <Tab.Screen
-            options={{
-              tabBarButton: () => null,
-            }}
-            name="account"
-            component={Account}
           />
         </>
       ) : (

@@ -88,7 +88,6 @@ export const Playlist = ({ route }: PlaylistDetailProps) => {
 
   const handlePlaylistTracks = async () => {
     const response = await fetchPlaylistTracks(id);
-    console.log("Playlist Tracks Response:", response); // Log the response
 
     if (response && response.items) {
       const filteredResponse: PlaylistTrack[] = response.items.filter(
