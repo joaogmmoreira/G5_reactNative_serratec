@@ -62,9 +62,6 @@ export const Home = () => {
   const handlePress = () => {
     navigation.navigate("account");
   };
-  // const handleLogout = async () => {
-  //   return logout();
-  // };
 
   return (
     <Gradient>
