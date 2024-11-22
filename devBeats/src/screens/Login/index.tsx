@@ -1,5 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
-import { View, TextInput, Button, Image, Text, StyleSheet } from "react-native";
+import {
+  View,
+  TextInput,
+  Button,
+  Image,
+  Text,
+  TouchableOpacity,
+} from "react-native";
 import { AuthContext } from "../../context/Auth";
 import { styles } from "./styles";
 import {
@@ -12,10 +19,12 @@ import {
   Poppins_100Thin,
 } from "@expo-google-fonts/poppins";
 import { Gradient } from "../../components/Gradient/Gradient";
+import { useNavigation } from "@react-navigation/native";
 
 export const Login = () => {
   const [form, setForm] = useState({ email: "", password: "" });
   const [buttonDisabled, setButtonDisabled] = useState(true);
+  const navigation = useNavigation<any>();
 
   const [fontLoaded] = useFonts({
     Silkscreen_700Bold,
@@ -85,6 +94,9 @@ export const Login = () => {
             key="password"
             style={styles.input}
           />
+          <TouchableOpacity onPress={() => navigation.navigate("register")}>
+            <Text style={styles.register}>Registre-se</Text>
+          </TouchableOpacity>
           <View style={styles.buttonContainer}>
             <Button
               onPress={() => onButtonClick()}

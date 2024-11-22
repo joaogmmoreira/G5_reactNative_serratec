@@ -23,3 +23,9 @@ export const getUserName = async (email: string) => {
 
   return response;
 };
+
+export const createUser = async (form: Form) => {
+  const response = await api.post("/users", form);
+
+  return response;
+};

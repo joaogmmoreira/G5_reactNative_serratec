@@ -27,8 +27,6 @@ export const styles = StyleSheet.create({
   },
   inputContainer: {
     width: "100%",
-    height: "35%",
-    // backgroundColor: "#222",
     padding: 25,
     borderRadius: 8,
     marginBottom: 50,
@@ -64,5 +62,11 @@ export const styles = StyleSheet.create({
     marginTop: 40,
     alignSelf: "center",
     width: "100%",
+  },
+  register: {
+    color: "#fff",
+    fontSize: 16,
+    textAlign: "center",
+    marginTop: 10,
   },
 });

@@ -12,6 +12,7 @@ import { Playlist } from "../../screens/Playlist";
 import { Artist } from "../../screens/Artist";
 import { Player } from "../../screens/Player";
 import { Account } from "../../screens/Account";
+import { Register } from "../../screens/Register";
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
@@ -28,6 +29,7 @@ export type RootTabParamList = {
   playlist: undefined;
   player: undefined;
   account: undefined;
+  register: undefined;
 };
 
 export function BottomTabRoutes() {
@@ -100,13 +102,22 @@ export function BottomTabRoutes() {
           />
         </>
       ) : (
-        <Tab.Screen
-          options={{
-            tabBarButton: () => null,
-          }}
-          name="login"
-          component={Login}
-        />
+        <>
+          <Tab.Screen
+            options={{
+              tabBarButton: () => null,
+            }}
+            name="login"
+            component={Login}
+          />
+          <Tab.Screen
+            options={{
+              tabBarButton: () => null,
+            }}
+            name="register"
+            component={Register}
+          />
+        </>
       )}
     </Tab.Navigator>
   );
