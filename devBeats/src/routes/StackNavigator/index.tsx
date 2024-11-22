@@ -4,9 +4,8 @@ import { AuthContext } from "../../context/Auth";
 import { Artist } from "../../screens/Artist";
 import { Playlist } from "../../screens/Playlist";
 import { Library } from "../../screens/Library";
-import { Player } from "../../screens/Player";
 import { Home } from "../../screens/Home";
-
+import { Player } from "../../screens/Player";
 
 const Stack = createNativeStackNavigator();
 
