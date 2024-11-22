@@ -80,7 +80,12 @@ export const Library = ({ route }: LibraryDetailProps) => {
       </View>
       <View style={styles.containerHeaderMenu}>
         <View>
-          <Icon3 name="arrow-down-circle-outline" size={20} color="#999" />
+          <Icon3
+            style={styles.bottomUp}
+            name="arrow-down-circle-outline"
+            size={25}
+            color="#999"
+          />
         </View>
         <View style={styles.containerHeaderMenuButtons}>
           <Icon style={styles.controlButtonShuffle} name="shuffle" />

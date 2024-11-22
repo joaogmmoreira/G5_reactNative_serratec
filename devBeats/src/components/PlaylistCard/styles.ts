@@ -30,12 +30,18 @@ export const styles = StyleSheet.create({
   songText: {
     color: "white",
     fontFamily: "Roboto, sans-serif",
-    fontSize: 12,
+    fontSize: 17,
   },
   songArtist: {
+    resizeMode: 'cover',
     color: "#999",
     paddingTop: 5,
+    width: 270,
     fontFamily: "Roboto, sans-serif",
+    fontWeight: 'bold',
     fontSize: 10,
   },
+  bottomTres: {
+    
+  }
 });

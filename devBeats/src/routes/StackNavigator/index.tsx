@@ -7,6 +7,7 @@ import { Library } from "../../screens/Library";
 import { Player } from "../../screens/Player";
 import { Home } from "../../screens/Home";
 
+
 const Stack = createNativeStackNavigator();
 
 export function StackNavigator() {
