@@ -4,7 +4,7 @@ import { Artist } from "../../screens/Artist";
 import { Playlist } from "../../screens/Playlist";
 import { Library } from "../../screens/Library";
 import { Home } from "../../screens/Home";
-import { Player } from "../../screens/Player/Index";
+import { Player } from "../../screens/Player";
 
 const Stack = createNativeStackNavigator();
 
