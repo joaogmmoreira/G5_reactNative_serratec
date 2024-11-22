@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { BottomTabRoutes } from "../BottomTabNavigator";
 import { AuthContext } from "../../context/Auth";
-import { Login } from "../../screens/Login";
 import { Artist } from "../../screens/Artist";
 import { Playlist } from "../../screens/Playlist";
 import { Library } from "../../screens/Library";
-// <!-- import { AlbumDetail } from "../../screens/Album"; -->
+import { Player } from "../../screens/Player";
+import { Home } from "../../screens/Home";
+
 
 const Stack = createNativeStackNavigator();
 
@@ -15,43 +15,39 @@ export function StackNavigator() {
 
   return (
     <Stack.Navigator>
-      {authenticated ? (
-        <>
-          <Stack.Screen
+      <>
+        {/* <Stack.Screen
             name="BottomTabRoutes"
             component={BottomTabRoutes}
             options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Artista"
-            component={Artist}
-            options={{ headerShown: false }}
-          />
-
-          <Stack.Screen
-            name="Playlist"
-            component={Playlist}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Library"
-            component={Library}
-            options={{ headerShown: false }}
-          />
-
-          {/* <Stack.Screen
-            name="Album"
-            component={AlbumDetail}
-            options={{ headerShown: false }}
           /> */}
-        </>
-      ) : (
         <Stack.Screen
-          name="Login"
-          component={Login}
+          name="Home"
+          component={Home}
           options={{ headerShown: false }}
         />
-      )}
+        <Stack.Screen
+          name="artist"
+          component={Artist}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="playlist"
+          component={Playlist}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="library"
+          component={Library}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="player"
+          component={Player}
+          options={{ headerShown: false }}
+        />
+      </>
     </Stack.Navigator>
   );
 }

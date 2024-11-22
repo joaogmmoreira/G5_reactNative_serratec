@@ -27,10 +27,27 @@ export const SearchCard: React.FC<PlaylistCardProps> = ({ item }) => {
 
   const handlePress = (type: string) => {
     if (type === "playlist") {
-      return navigate.navigate("Playlist", item.id);
+      return navigate.navigate("playlist", { id: item.id, type: "playlist" });
     }
-    // if (type === "album") return navigate.navigate("album", item.id);
-    return navigate.navigate("Artista", item.id);
+    if (type === "album") {
+      return navigate.navigate("playlist", { id: item.id, type: "album" });
+    }
+    if (type === "artist") {
+      return navigate.navigate("artist", { id: item.id, type: "artist" });
+    }
+  };
+
+  const artistOrPlaylist = () => {
+    if (item.type === "artist") {
+      return "artist";
+    }
+    if (item.type === "playlist") {
+      return "playlist";
+    }
+    if (item.type === "album") {
+      return "album";
+    }
+    return "default";
   };
 
   const imageUrl = () => {
@@ -45,13 +62,14 @@ export const SearchCard: React.FC<PlaylistCardProps> = ({ item }) => {
     }
   };
 
-  const artistOrPlaylist = () => {
-    if (item.type === "artist") {
-    } else if (item.type === "playlist") {
-      return "playlist";
-    }
-    return "artist";
-  };
+  // const artistOrPlaylist = () => {
+  //   if (item.type === "artist") {
+  //   } else if (item.type === "playlist") {
+  //     return "playlist";
+  //   }
+  //   return "artist";
+  // };
+
   return (
     <TouchableOpacity
       onPress={() => handlePress(artistOrPlaylist())}

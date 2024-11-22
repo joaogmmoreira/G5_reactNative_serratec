@@ -4,7 +4,8 @@ import { fetchTopTracks, fetchAlbums } from "../../services/spotifyApi";
 import { styles } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { SearchCard } from "../../components/SearchCard";
-import { TrackCard } from "../../components/TrackCard";
+import { SongCard } from "../../components/SongCard";
+import { Gradient } from "../../components/Gradient/Gradient";
 
 interface Album {
   id: string;
@@ -12,14 +13,24 @@ interface Album {
   images: { url: string }[];
 }
 
-interface Track {
+export interface Track {
   id: string;
+  type?: string;
   name: string;
+  album: {
+    images: [{ url: string }];
+  };
+  artists: [{ name: string }];
+  preview_url: string;
+  href: string;
 }
 
 interface ArtistDetailProps {
   route?: {
-    params: string;
+    params: {
+      id: string;
+      type: string;
+    };
   };
 }
 
@@ -34,37 +45,37 @@ export function Artist({ route }: ArtistDetailProps) {
     handleAlbums();
   }, []);
 
-  const params = route?.params;
+  const id = route?.params?.id;
 
   const handleTopTracks = async () => {
-    if (!params) return navigate.navigate("Home");
-
-    const response = await fetchTopTracks(params);
-
+    if (!id) return;
+    const response = await fetchTopTracks(id);
     setTopTracks(response.tracks);
   };
 
   const handleAlbums = async () => {
-    if (!params) return navigate.navigate("Home");
-    const response = await fetchAlbums(params);
+    if (!id) return;
+    const response = await fetchAlbums(id);
     setAlbums(response.items);
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Músicas mais populares</Text>
-      <FlatList
-        data={topTracks}
-        renderItem={({ item }) => <TrackCard item={item} />}
-        keyExtractor={(item) => item.id}
-      />
-      <Text style={styles.title}>Álbuns</Text>
-      <FlatList
-        data={albums}
-        renderItem={({ item }) => <SearchCard item={item} />}
-        keyExtractor={(item) => item.id}
-        horizontal
-      />
-    </View>
+    <Gradient>
+      <View style={styles.container}>
+        <Text style={styles.title}>Músicas mais populares</Text>
+        <FlatList
+          data={topTracks}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => <SongCard {...item} />}
+        />
+        <Text style={styles.title}>Álbuns</Text>
+        <FlatList
+          data={albums}
+          renderItem={({ item }) => <SearchCard item={item} />}
+          keyExtractor={(item) => item.id}
+          horizontal
+        />
+      </View>
+    </Gradient>
   );
 }
