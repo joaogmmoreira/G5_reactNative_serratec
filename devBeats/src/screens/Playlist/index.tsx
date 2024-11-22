@@ -52,7 +52,20 @@ export const Playlist = ({ route }: PlaylistDetailProps) => {
 
   const handlePlaylistTracks = async () => {
     const response = await fetchPlaylistTracks(id);
-    setPlaylistTracks(response.items);
+    console.log("Playlist Tracks Response:", response); // Log the response
+
+    if (response && response.items) {
+      const filteredResponse: PlaylistTrack[] = response.items.filter(
+        (item: { track: PlaylistTrack["track"] }) => {
+          return (
+            item.track && item.track.id !== null && item.track.id !== undefined
+          );
+        }
+      );
+      setPlaylistTracks(filteredResponse);
+    } else {
+      console.error("Invalid response structure:", response);
+    }
   };
 
   useEffect(() => {
@@ -60,11 +73,11 @@ export const Playlist = ({ route }: PlaylistDetailProps) => {
     handlePlaylistTracks();
   }, []);
 
-  useEffect(() => {
-    playlistTracks.forEach((item) =>
-      console.log(item.track.album.images[0].url)
-    );
-  }, [playlistTracks]);
+  // useEffect(() => {
+  //   playlistTracks.forEach((item) =>
+  //     console.log(item.track.album.images[0].url)
+  //   );
+  // }, [playlistTracks]);
 
   return (
     <Gradient>
