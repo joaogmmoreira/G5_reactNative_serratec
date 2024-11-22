@@ -1,10 +1,14 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Artist } from "../../screens/Artist";
+<<<<<<< HEAD
+// import { AlbumDetail } from "../../screens/Album";
+=======
 import { Playlist } from "../../screens/Playlist";
 import { Library } from "../../screens/Library";
 import { Home } from "../../screens/Home";
 import { Player } from "../../screens/Player";
+>>>>>>> e1c56655b40754d7b740670d47faa5b1847c405b
 
 const Stack = createNativeStackNavigator();
 
