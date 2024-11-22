@@ -1,22 +1,68 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  mainContainer: {
+  container: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    padding: 16,
   },
-  textInput: {
+  logo: {
+    width: 160,
+    height: 160,
+    marginBottom: -5,
+  },
+  appName: {
+    fontSize: 32,
+    color: "#fff",
+    marginBottom: 10,
+    fontFamily: "Poppins_100Thin",
+    textAlign: "center",
+  },
+  appDescription: {
+    fontSize: 30,
+    color: "#4EAEA4",
+    marginBottom: 40,
+    fontFamily: "Silkscreen_400Regular",
+  },
+  inputContainer: {
+    width: "100%",
+    height: "35%",
+    // backgroundColor: "#222",
+    padding: 25,
+    borderRadius: 8,
+    marginBottom: 50,
+  },
+  login: {
+    fontSize: 18,
+    marginBottom: 20,
+    fontWeight: "bold",
+    color: "#fff",
+  },
+  input: {
+    width: "100%",
     height: 40,
-    width: "80%",
-    borderColor: "gray",
+    borderColor: "#ffff",
     borderWidth: 1,
-    margin: 10,
-    padding: 10,
-    borderRadius: 5,
+    paddingHorizontal: 10,
+    marginTop: 20,
+    backgroundColor: "#ffff",
+    borderRadius: 20,
   },
-  button: {
-    width: "80%",
-    margin: 10,
+  line2: {
+    width: "100%",
+    height: 2,
+    backgroundColor: "#4EAEA4",
+    marginVertical: 3,
+    alignSelf: "center",
+  },
+  linesContainer2: {
+    marginBottom: 10,
+  },
+
+  buttonContainer: {
+    marginTop: 40,
+    alignSelf: "center",
+    width: "100%",
   },
 });

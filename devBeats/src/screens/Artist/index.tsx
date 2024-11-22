@@ -3,6 +3,9 @@ import { View, Text, FlatList, Image, StyleSheet } from "react-native";
 import { fetchTopTracks, fetchAlbums } from "../../services/spotifyApi";
 import { styles } from "./styles";
 import { useNavigation } from "@react-navigation/native";
+import { SearchCard } from "../../components/SearchCard";
+import { SongCard } from "../../components/SongCard";
+import { Gradient } from "../../components/Gradient/Gradient";
 
 interface Album {
   id: string;
@@ -10,60 +13,69 @@ interface Album {
   images: { url: string }[];
 }
 
-interface Track {
+export interface Track {
   id: string;
+  type?: string;
   name: string;
+  album: {
+    images: [{ url: string }];
+  };
+  artists: [{ name: string }];
+  preview_url: string;
+  href: string;
 }
 
 interface ArtistDetailProps {
-  route: {
-    params: string;
+  route?: {
+    params: {
+      id: string;
+      type: string;
+    };
   };
 }
 
 export function Artist({ route }: ArtistDetailProps) {
-  const { params } = route;
-  const navigate = useNavigation<any>();
   const [topTracks, setTopTracks] = useState<Track[]>([]);
   const [albums, setAlbums] = useState<Album[]>([]);
 
-  useEffect(() => {
-    const handleTopTracks = async () => {
-      if (!params) navigate.navigate("Home");
-      const response = await fetchTopTracks(params);
-      setTopTracks(response.tracks);
-    };
+  const navigate = useNavigation<any>();
 
-    const handleAlbums = async () => {
-      if (!params) navigate.navigate("Home");
-      const response = await fetchAlbums(params);
-      setAlbums(response.items);
-    };
+  useEffect(() => {
     handleTopTracks();
     handleAlbums();
   }, []);
 
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Músicas mais populares</Text>
-      <FlatList
-        data={topTracks}
-        renderItem={({ item }) => <Text style={styles.track}>{item.name}</Text>}
-        keyExtractor={(item) => item.id}
-      />
+  const id = route?.params?.id;
 
-      <Text style={styles.title}>Álbuns</Text>
-      <FlatList
-        data={albums}
-        renderItem={({ item }) => (
-          <View style={styles.album}>
-            <Image source={{ uri: item.images[0]?.url }} style={styles.image} />
-            <Text>{item.name}</Text>
-          </View>
-        )}
-        keyExtractor={(item) => item.id}
-        horizontal
-      />
-    </View>
+  const handleTopTracks = async () => {
+    if (!id) return;
+    const response = await fetchTopTracks(id);
+    setTopTracks(response.tracks);
+  };
+
+  const handleAlbums = async () => {
+    if (!id) return;
+    const response = await fetchAlbums(id);
+    setAlbums(response.items);
+  };
+
+  return (
+    <Gradient>
+      <View style={styles.container}>
+        <Text style={styles.title}>Músicas mais populares</Text>
+        <FlatList
+          data={topTracks}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => <SongCard {...item} />}
+        />
+        <Text style={styles.title}>Álbuns</Text>
+        <FlatList
+          data={albums}
+          renderItem={({ item }) => <SearchCard item={item} />}
+          keyExtractor={(item) => item.id}
+          horizontal
+        />
+      </View>
+    </Gradient>
   );
 }
