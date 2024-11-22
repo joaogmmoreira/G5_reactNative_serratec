@@ -58,9 +58,6 @@ export function Artist({ route }: ArtistDetailProps) {
     const response = await fetchAlbums(id);
     setAlbums(response.items);
   };
-  useEffect(() => {
-    console.log(topTracks);
-  }, [topTracks]);
 
   return (
     <Gradient>

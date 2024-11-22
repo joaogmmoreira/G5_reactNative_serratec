@@ -146,6 +146,15 @@ export const getCategoriesPlaylists = async (categoryId: string) => {
   }
 };
 
+export const fetchSong = async (songId: string) => {
+  try {
+    const response = await api.get(`/tracks/${songId}`);
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar música:", error);
+  }
+};
+
 // export const fetchArtists = async (artistsId: string) => {
 //   try {
 //     const response = await api.get(`/artists/ids=${artistsId}`);

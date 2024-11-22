@@ -2,13 +2,18 @@ import React from "react";
 import { Text, TouchableOpacity, Image, View } from "react-native";
 import { styles } from "./styles";
 import { PlaylistTrack } from "../../screens/Playlist";
+import { useNavigation } from "@react-navigation/native";
 
 export const TrackCard = (item: PlaylistTrack) => {
-  // const { track, preview_url, href } = item;
+  const navigate = useNavigation<any>();
+
   const { track } = item;
-  // console.log(item);
+  const handlePress = () => {
+    return navigate.navigate("player", { id: track.id });
+  };
+
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity onPress={() => handlePress()} style={styles.container}>
       <Image source={{ uri: track.album.images[0].url }} style={styles.image} />
       <View style={styles.containerText}>
         <Text style={styles.songTitle}>{track.name}</Text>

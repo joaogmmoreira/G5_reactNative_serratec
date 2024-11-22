@@ -61,10 +61,6 @@ export const Library = ({ route }: LibraryDetailProps) => {
     handleUserLibrary();
   }, []);
 
-  useEffect(() => {
-    console.log(userLibrary);
-  }, [userLibrary]);
-
   return (
     <Gradient>
       <View style={styles.containerHeader}>

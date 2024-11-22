@@ -87,7 +87,18 @@ export const Playlist = ({ route }: PlaylistDetailProps) => {
 
   const handlePlaylistTracks = async () => {
     const response = await fetchPlaylistTracks(id);
-    setPlaylistTracks(response.items);
+    console.log("Playlist Tracks Response:", response); // Log the response
+
+    if (response && response.items) {
+      const filteredResponse: PlaylistTrack[] = response.items.filter(
+        (item: PlaylistTrack) => {
+          return (
+            item.track && item.track.id !== null && item.track.id !== undefined
+          );
+        }
+      );
+      setPlaylistTracks(filteredResponse);
+    }
   };
 
   const handleAlbum = async () => {
@@ -105,6 +116,11 @@ export const Playlist = ({ route }: PlaylistDetailProps) => {
       handleAlbum();
     }
   }, []);
+
+  useEffect(() => {
+    // console.log(playlistTracks.forEach((item) => console.log(item.track.id)));
+    console.log();
+  }, [playlistTracks]);
 
   return (
     <Gradient>

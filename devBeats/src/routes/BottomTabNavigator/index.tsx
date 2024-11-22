@@ -6,7 +6,10 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import Icon2 from "react-native-vector-icons/MaterialIcons";
 import { Buscar } from "../../screens/Buscar/Buscar";
 import { Library } from "../../screens/Library";
-import { Artist } from "../../screens/Artist";
+// import { Artist } from "../../screens/Artist";
+import { StackNavigator } from "../StackNavigator";
+import { Login } from "../../screens/Login";
+import { AuthContext } from "../../context/Auth";
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
@@ -19,9 +22,11 @@ export type RootTabParamList = {
   Login: undefined;
   Artist: undefined;
   Library: undefined;
+  StackNav: undefined;
 };
 
 export function BottomTabRoutes() {
+  const { authenticated } = useContext(AuthContext);
   return (
     <Tab.Navigator
       // initialRouteName="Home"
@@ -32,33 +37,56 @@ export function BottomTabRoutes() {
         tabBarActiveTintColor: "#fff",
       }}
     >
-      <Tab.Screen
-        options={{
-          tabBarIcon: ({ color }) => (
-            <Icon name="home" color={color} size={24} />
-          ),
-        }}
-        name="Home"
-        component={Home}
-      />
-      <Tab.Screen
-        options={{
-          tabBarIcon: ({ color }) => (
-            <Icon name="search" color={color} size={24} />
-          ),
-        }}
-        name="Search"
-        component={Buscar}
-      />
-      <Tab.Screen
-        options={{
-          tabBarIcon: ({ color }) => (
-            <Icon2 name="my-library-music" color={color} size={24} />
-          ),
-        }}
-        name="Library"
-        component={Library}
-      />
+      {authenticated ? (
+        <>
+          <Tab.Screen
+            options={{
+              tabBarIcon: ({ color }) => (
+                <Icon name="home" color={color} size={24} />
+              ),
+            }}
+            name="StackNav"
+            component={StackNavigator}
+          />
+          <Tab.Screen
+            options={{
+              tabBarIcon: ({ color }) => (
+                <Icon name="home" color={color} size={24} />
+              ),
+            }}
+            name="Home"
+            component={Home}
+          />
+          <Tab.Screen
+            options={{
+              tabBarIcon: ({ color }) => (
+                <Icon name="search" color={color} size={24} />
+              ),
+            }}
+            name="Search"
+            component={Buscar}
+          />
+          <Tab.Screen
+            options={{
+              tabBarIcon: ({ color }) => (
+                <Icon2 name="my-library-music" color={color} size={24} />
+              ),
+            }}
+            name="Library"
+            component={Library}
+          />
+        </>
+      ) : (
+        <Tab.Screen
+          options={{
+            tabBarIcon: ({ color }) => (
+              <Icon name="home" color={color} size={24} />
+            ),
+          }}
+          name="Login"
+          component={Login}
+        />
+      )}
     </Tab.Navigator>
   );
 }

@@ -1,7 +1,5 @@
 import React from "react";
 import { Text, TouchableOpacity, Image, View } from "react-native";
-// import { PlaylistTrack } from "../../screens/Playlist";
-// import { Album } from "../../screens/Playlist";
 import { styles } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 
