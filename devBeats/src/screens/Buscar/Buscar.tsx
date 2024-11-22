@@ -42,8 +42,8 @@ export function Buscar() {
 
     const orderedItems: SearchItem[] = [
       ...artists,
-      ...tracks,
       ...albums,
+      ...tracks,
       ...playlists,
     ];
 

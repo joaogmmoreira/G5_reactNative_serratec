@@ -9,7 +9,7 @@ export const CategoriesCard = (category: CategoriesCardProps) => {
   const { id, icons, name } = category;
 
   const handlePress = () => {
-    return navigate.navigate("Library", { id });
+    return navigate.navigate("library", { id });
   };
 
   return (
