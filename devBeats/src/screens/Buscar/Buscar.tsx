@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, TextInput } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
+import { View, FlatList, TextInput } from "react-native";
 import { buscarCss } from "./buscarCss";
 import {
   fetchFeaturedPlaylists,
   fetchSearchResults,
 } from "../../services/spotifyApi";
 import { SearchCard } from "../../components/SearchCard";
+import { Gradient } from "../../components/Gradient/Gradient";
+import { BackArrow } from "../../components/BackArrow";
 
 interface Playlist {
   id: string;
@@ -65,30 +66,35 @@ export function Buscar() {
   }, [searchTerm]);
 
   return (
-    <LinearGradient colors={["#065055", "#000000"]} style={buscarCss.container}>
+    <Gradient>
+      <BackArrow />
       <TextInput
         style={buscarCss.input}
         placeholder="Procurar playlists, álbuns, artistas ou músicas..."
         onChangeText={setSearchTerm}
         value={searchTerm}
       />
-      {searchResults.length > 0 ? (
-        <FlatList
-          data={searchResults}
-          renderItem={({ item }) => <SearchCard item={item} />}
-          keyExtractor={(item) => item.id}
-          numColumns={2}
-          contentContainerStyle={buscarCss.flatListContainer}
-        />
-      ) : (
-        <FlatList
-          data={playlists}
-          renderItem={({ item }) => <SearchCard item={item} />}
-          keyExtractor={(item) => item.id}
-          numColumns={2}
-          contentContainerStyle={buscarCss.flatListContainer}
-        />
-      )}
-    </LinearGradient>
+      <View style={buscarCss.container}>
+        {/* <View style={buscarCss.flatListContainer}> */}
+        {searchResults.length > 0 ? (
+          <FlatList
+            data={searchResults}
+            renderItem={({ item }) => <SearchCard item={item} />}
+            keyExtractor={(item) => item.id}
+            numColumns={2}
+            // contentContainerStyle={buscarCss.flatListContainer}
+          />
+        ) : (
+          <FlatList
+            data={playlists}
+            renderItem={({ item }) => <SearchCard item={item} />}
+            keyExtractor={(item) => item.id}
+            numColumns={2}
+            contentContainerStyle={buscarCss.flatListContainer}
+          />
+        )}
+        {/* </View> */}
+      </View>
+    </Gradient>
   );
 }

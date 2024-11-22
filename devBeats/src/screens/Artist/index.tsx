@@ -6,6 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 import { SearchCard } from "../../components/SearchCard";
 import { SongCard } from "../../components/SongCard";
 import { Gradient } from "../../components/Gradient/Gradient";
+import { BackArrow } from "../../components/BackArrow";
 
 interface Album {
   id: string;
@@ -62,6 +63,7 @@ export function Artist({ route }: ArtistDetailProps) {
   return (
     <Gradient>
       <View style={styles.container}>
+        <BackArrow />
         <Text style={styles.title}>Músicas mais populares</Text>
         <FlatList
           data={topTracks}

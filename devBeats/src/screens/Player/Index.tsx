@@ -8,6 +8,7 @@ import Icon3 from "react-native-vector-icons/Entypo";
 import Icon4 from "react-native-vector-icons/AntDesign";
 import Icon5 from "react-native-vector-icons/Feather";
 import { fetchSong } from "../../services/spotifyApi";
+import { BackArrow } from "../../components/BackArrow";
 
 export interface PlayerDetailsProps {
   route?: {
@@ -112,8 +113,9 @@ export const Player = ({ route }: PlayerDetailsProps) => {
 
   return (
     <Gradient>
+      <BackArrow />
       {song && (
-        <>
+        <View style={styles.mainContainer}>
           <View style={styles.containerTitle}>
             <View style={styles.titleButtonDiv}>
               <TouchableOpacity>
@@ -207,7 +209,7 @@ export const Player = ({ route }: PlayerDetailsProps) => {
             </View>
           </View>
           <View style={styles.aboutContainer}></View>
-        </>
+        </View>
       )}
     </Gradient>
   );
