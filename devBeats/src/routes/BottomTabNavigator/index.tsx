@@ -30,33 +30,47 @@ export type RootTabParamList = {
   player: undefined;
   account: undefined;
   register: undefined;
+  space1: undefined;
+  space2: undefined;
 };
 
 export function BottomTabRoutes() {
   const { authenticated } = useContext(AuthContext);
   return (
     <Tab.Navigator
+      // initialRouteName="stackNav"
       screenOptions={{
         headerShown: false,
-        tabBarStyle: { backgroundColor: "#000", paddingBottom: 2 },
         tabBarInactiveTintColor: "#aaa",
         tabBarActiveTintColor: "#fff",
-        detachInactiveScreens: true,
+        tabBarStyle: {
+          justifyContent: "space-evenly",
+          alignItems: "center",
+          paddingVertical: 5,
+          borderTopLeftRadius: 15,
+          borderTopRightRadius: 15,
+          backgroundColor: "#000",
+          position: "absolute",
+          height: 60,
+        },
       }}
     >
       {authenticated ? (
         <>
           <Tab.Screen
             options={{
+              tabBarShowLabel: false,
               tabBarIcon: ({ color }) => (
-                <Icon name="home" color={color} size={24} />
+                <Icon name="home" color={color} size={30} />
               ),
+              tabBarItemStyle: { marginHorizontal: 40, marginVertical: 10 },
             }}
             name="stackNav"
             component={StackNavigator}
           />
           <Tab.Screen
             options={{
+              tabBarShowLabel: false,
               tabBarButton: () => null,
             }}
             name="playlist"
@@ -64,15 +78,7 @@ export function BottomTabRoutes() {
           />
           <Tab.Screen
             options={{
-              tabBarIcon: ({ color }) => (
-                <Icon name="search" color={color} size={24} />
-              ),
-            }}
-            name="search"
-            component={Buscar}
-          />
-          <Tab.Screen
-            options={{
+              tabBarShowLabel: false,
               tabBarButton: () => null,
             }}
             name="artist"
@@ -80,15 +86,18 @@ export function BottomTabRoutes() {
           />
           <Tab.Screen
             options={{
+              tabBarShowLabel: false,
               tabBarIcon: ({ color }) => (
-                <Icon2 name="my-library-music" color={color} size={24} />
+                <Icon name="search" color={color} size={30} />
               ),
+              tabBarItemStyle: { marginHorizontal: 40, marginVertical: 10 },
             }}
-            name="library"
-            component={Library}
+            name="search"
+            component={Buscar}
           />
           <Tab.Screen
             options={{
+              tabBarShowLabel: false,
               tabBarButton: () => null,
             }}
             name="account"
@@ -96,10 +105,30 @@ export function BottomTabRoutes() {
           />
           <Tab.Screen
             options={{
+              tabBarShowLabel: false,
               tabBarButton: () => null,
             }}
             name="player"
             component={Player}
+          />
+          <Tab.Screen
+            options={{
+              tabBarShowLabel: false,
+              tabBarIcon: ({ color }) => (
+                <Icon2 name="my-library-music" color={color} size={30} />
+              ),
+              tabBarItemStyle: { marginHorizontal: 40, marginVertical: 10 },
+            }}
+            name="library"
+            component={Library}
+          />
+          <Tab.Screen
+            options={{
+              tabBarShowLabel: false,
+              tabBarButton: () => null,
+            }}
+            name="space1"
+            component={() => null}
           />
         </>
       ) : (
